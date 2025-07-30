@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>すべての提出 - AtCoder Beginner Contest 416</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="Content-Language" content="ja">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="google-site-verification" content="nXGC_JxO0yoP1qBzMnYD_xgufO6leSLw1kyNo2HZltM" />
+
+	
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-RC512FD18N"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('set', 'user_properties', {
+			
+				'login_status': 'logged_in',
+			
+		});
+		gtag('config', 'G-RC512FD18N');
+	</script>
+
+	
+	<meta name="description" content="プログラミング初級者から上級者まで楽しめる、競技プログラミングコンテストサイト「AtCoder」。オンラインで毎週開催プログラミングコンテストを開催しています。競技プログラミングを用いて、客観的に自分のスキルを計ることのできるサービスです。">
+	<meta name="author" content="AtCoder Inc.">
+
+	<meta property="og:site_name" content="AtCoder">
+	
+	<meta property="og:title" content="すべての提出 - AtCoder Beginner Contest 416" />
+	<meta property="og:description" content="プログラミング初級者から上級者まで楽しめる、競技プログラミングコンテストサイト「AtCoder」。オンラインで毎週開催プログラミングコンテストを開催しています。競技プログラミングを用いて、客観的に自分のスキルを計ることのできるサービスです。" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://atcoder.jp/contests/abc416/submissions?f.LanguageName=&amp;f.Status=&amp;f.Task=abc416_a&amp;f.User=&amp;page=2" />
+	<meta property="og:image" content="https://img.atcoder.jp/assets/atcoder.png" />
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:site" content="@atcoder" />
+	
+	<meta property="twitter:title" content="すべての提出 - AtCoder Beginner Contest 416" />
+
+	<link href="//fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="//img.atcoder.jp/public/f105edd/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="//img.atcoder.jp/public/f105edd/css/base.css">
+	<link rel="shortcut icon" type="image/png" href="//img.atcoder.jp/assets/favicon.png">
+	<link rel="apple-touch-icon" href="//img.atcoder.jp/assets/atcoder.png">
+	<script src="//img.atcoder.jp/public/f105edd/js/lib/jquery-1.9.1.min.js"></script>
+	<script src="//img.atcoder.jp/public/f105edd/js/lib/bootstrap.min.js"></script>
+	<script src="//img.atcoder.jp/public/f105edd/js/cdn/js.cookie.min.js"></script>
+	<script src="//img.atcoder.jp/public/f105edd/js/cdn/moment.min.js"></script>
+	<script src="//img.atcoder.jp/public/f105edd/js/cdn/moment_js-ja.js"></script>
+	<script>
+		var LANG = "ja";
+		var userScreenName = "k1suxu";
+		var csrfToken = "TKXxRjNjs5zT6FdJld4XRFxFoVDXJ6kREp/tIqHBwPQ="
+	</script>
+	<script src="//img.atcoder.jp/public/f105edd/js/utils.js"></script>
+	
+	
+		<script src="//img.atcoder.jp/public/f105edd/js/contest.js"></script>
+		<link href="//img.atcoder.jp/public/f105edd/css/contest.css" rel="stylesheet" />
+		<script>
+			var contestScreenName = "abc416";
+			var remainingText = "残り時間";
+			var countDownText = "開始まであと";
+			var startTime = moment("2025-07-26T21:00:00+09:00");
+			var endTime = moment("2025-07-26T22:40:00+09:00");
+		</script>
+		<style></style>
+	
+	
+		<link href="//img.atcoder.jp/public/f105edd/css/cdn/select2.min.css" rel="stylesheet" />
+		<link href="//img.atcoder.jp/public/f105edd/css/cdn/select2-bootstrap.min.css" rel="stylesheet" />
+		<script src="//img.atcoder.jp/public/f105edd/js/lib/select2.min.js"></script>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<script src="//img.atcoder.jp/public/f105edd/js/base.js"></script>
+</head>
+
+<body>
+
+<script type="text/javascript">
+	var __pParams = __pParams || [];
+	__pParams.push({client_id: '468', c_1: 'atcodercontest', c_2: 'ClientSite'});
+</script>
+<script type="text/javascript" src="https://cdn.d2-apps.net/js/tr.js" async></script>
+
+
+<div id="modal-contest-start" class="modal fade" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">コンテスト開始</h4>
+			</div>
+			<div class="modal-body">
+				<p>AtCoder Beginner Contest 416が開始されました。</p>
+			</div>
+			<div class="modal-footer">
+				
+					<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+				
+			</div>
+		</div>
+	</div>
+</div>
+<div id="modal-contest-end" class="modal fade" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">コンテスト終了</h4>
+			</div>
+			<div class="modal-body">
+				<p>AtCoder Beginner Contest 416は終了しました。</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="main-div" class="float-container">
+
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+					<span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/home"></a>
+			</div>
+			<div class="collapse navbar-collapse" id="navbar-collapse">
+				<ul class="nav navbar-nav">
+				
+					<li><a class="contest-title" href="/contests/abc416">AtCoder Beginner Contest 416</a></li>
+				
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+							<img src='//img.atcoder.jp/assets/top/img/flag-lang/ja.png'> 日本語 <span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="/contests/abc416/submissions?f.LanguageName=&amp;f.Status=&amp;f.Task=abc416_a&amp;f.User=&amp;lang=ja&amp;page=2"><img src='//img.atcoder.jp/assets/top/img/flag-lang/ja.png'> 日本語</a></li>
+							<li><a href="/contests/abc416/submissions?f.LanguageName=&amp;f.Status=&amp;f.Task=abc416_a&amp;f.User=&amp;lang=en&amp;page=2"><img src='//img.atcoder.jp/assets/top/img/flag-lang/en.png'> English</a></li>
+						</ul>
+					</li>
+					
+					
+						<li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+								<span class="glyphicon glyphicon-cog" aria-hidden="true"></span> k1suxu (Guest) <span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu">
+								<li><a href="/users/k1suxu"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> マイプロフィール</a></li>
+								<li class="divider"></li>
+								<li><a href="/settings"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> 基本設定</a></li>
+								<li><a href="/settings/icon"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span> アイコン設定</a></li>
+								<li><a href="/settings/password"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span> パスワードの変更</a></li>
+								<li><a href="/settings/fav"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> お気に入り管理</a></li>
+								
+								
+								
+								<li class="divider"></li>
+								<li><a href="javascript:void(form_logout.submit())"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> ログアウト</a></li>
+							</ul>
+						</li>
+					
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<form method="POST" name="form_logout" action="/logout?continue=https%3A%2F%2Fatcoder.jp%2Fcontests%2Fabc416%2Fsubmissions%3Ff.LanguageName%3D%26f.Status%3D%26f.Task%3Dabc416_a%26f.User%3D%26page%3D2">
+		<input type="hidden" name="csrf_token" value="TKXxRjNjs5zT6FdJld4XRFxFoVDXJ6kREp/tIqHBwPQ=" />
+	</form>
+	<div id="main-container" class="container"
+		 	style="padding-top:50px;">
+		
+
+
+<div class="row">
+	<div id="contest-nav-tabs" class="col-sm-12 mb-2 cnvtb-fixed">
+	<div>
+		<small class="contest-duration">
+			
+				コンテスト時間:
+				<a href='http://www.timeanddate.com/worldclock/fixedtime.html?iso=20250726T2100&p1=248' target='blank'><time class='fixtime fixtime-full'>2025-07-26 21:00:00+0900</time></a> ~ <a href='http://www.timeanddate.com/worldclock/fixedtime.html?iso=20250726T2240&p1=248' target='blank'><time class='fixtime fixtime-full'>2025-07-26 22:40:00+0900</time></a> 
+				(100分)
+			
+		</small>
+		<small class="back-to-home pull-right"><a href="/home">AtCoderホームへ戻る</a></small>
+	</div>
+	<ul class="nav nav-tabs">
+		<li><a href="/contests/abc416"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> トップ</a></li>
+		
+			<li><a href="/contests/abc416/tasks"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> 問題</a></li>
+		
+
+		
+			<li><a href="/contests/abc416/clarifications"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> 質問 <span id="clar-badge" class="badge" ></span></a></li>
+		
+
+		
+			<li><a href="/contests/abc416/submit"><span class="glyphicon glyphicon-send" aria-hidden="true"></span> 提出</a></li>
+		
+
+		
+			<li class="active">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> 提出結果<span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="/contests/abc416/submissions"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> すべての提出</a></li>
+					
+						<li><a href="/contests/abc416/submissions/me"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> 自分の提出</a></li>
+						
+						
+							<li class="divider"></li>
+							<li><a href="/contests/abc416/score"><span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span> 自分の得点状況</a></li>
+						
+					
+				</ul>
+			</li>
+		
+
+		
+			
+				
+					<li><a href="/contests/abc416/standings"><span class="glyphicon glyphicon-sort-by-attributes-alt" aria-hidden="true"></span> 順位表</a></li>
+				
+			
+				
+					<li><a href="/contests/abc416/standings/virtual"><span class="glyphicon glyphicon-sort-by-attributes-alt" aria-hidden="true"></span> バーチャル順位表</a></li>
+				
+			
+		
+
+		
+			<li><a href="/contests/abc416/custom_test"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> コードテスト</a></li>
+		
+
+		
+			<li><a href="/contests/abc416/editorial"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> 解説</a></li>
+		
+		
+
+		<li class="pull-right"><a id="fix-cnvtb" href="javascript:void(0)"><span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span></a></li>
+	</ul>
+</div>
+	<div class="col-sm-12">
+	<ul class="nav nav-pills small">
+		
+			<li class="active"><a href="/contests/abc416/submissions">すべての提出</a></li>
+		
+		
+			<li ><a href="/contests/abc416/submissions/me">自分の提出</a></li>
+			
+			
+				<li ><a href="/contests/abc416/score">自分の得点状況</a></li>
+			
+		
+	</ul>
+</div>
+
+	<div class="col-sm-12">
+		<h2>すべての提出</h2>
+		<hr>
+		<script>var submissionAPI = "/contests/abc416/submissions/status/json";</script>
+		
+<nav>
+	<ul class="pager">
+		
+		<li><a href="/contests/abc416/submissions?f.LanguageName=&amp;f.Status=&amp;f.Task=abc416_a&amp;f.User=&amp;page=1">&lt; Prev</a></li>
+		
+		
+		<li><a href="/contests/abc416/submissions?f.LanguageName=&amp;f.Status=&amp;f.Task=abc416_a&amp;f.User=&amp;page=3">Next &gt;</a></li>
+		
+	</ul>
+</nav>
+
+
+<div class="panel panel-default panel-submission">
+	<div class="panel-heading">
+		<form class="form-inline form-filter" action="/contests/abc416/submissions">
+			
+			<div class="form-group form-group-sm">
+				<label for="select-task">問題: </label>
+				<select id="select-task" class="form-control" style="width:240px" data-placeholder="-" data-allow-clear="true" name="f.Task">
+					<option></option>
+					
+						<option value="abc416_a" selected>A - Vacation Validation</option>
+					
+						<option value="abc416_b">B - 1D Akari</option>
+					
+						<option value="abc416_c">C - Concat (X-th)</option>
+					
+						<option value="abc416_d">D - Match, Mod, Minimize 2</option>
+					
+						<option value="abc416_e">E - Development</option>
+					
+						<option value="abc416_f">F - Paint Tree 2</option>
+					
+						<option value="abc416_g">G - Concat (1st)</option>
+					
+				</select>
+			</div>
+			
+			
+				
+				<div class="form-group form-group-sm">
+					<label for="select-language">言語: </label>
+					<select id="select-language" class="form-control" data-placeholder="-" data-allow-clear="true" name="f.LanguageName">
+						<option></option>
+						
+							<option value="&gt;&lt;&gt;">&gt;&lt;&gt;</option>
+						
+							<option value="AWK">AWK</option>
+						
+							<option value="Ada">Ada</option>
+						
+							<option value="Assembly x64">Assembly x64</option>
+						
+							<option value="Bash">Bash</option>
+						
+							<option value="Brainfuck">Brainfuck</option>
+						
+							<option value="C">C</option>
+						
+							<option value="C#">C#</option>
+						
+							<option value="C&#43;&#43;">C&#43;&#43;</option>
+						
+							<option value="COBOL">COBOL</option>
+						
+							<option value="Carp">Carp</option>
+						
+							<option value="Clojure">Clojure</option>
+						
+							<option value="Common Lisp">Common Lisp</option>
+						
+							<option value="Crystal">Crystal</option>
+						
+							<option value="Cyber">Cyber</option>
+						
+							<option value="D">D</option>
+						
+							<option value="Dart">Dart</option>
+						
+							<option value="ECLiPSe">ECLiPSe</option>
+						
+							<option value="Elixir">Elixir</option>
+						
+							<option value="Emacs Lisp">Emacs Lisp</option>
+						
+							<option value="Erlang">Erlang</option>
+						
+							<option value="F#">F#</option>
+						
+							<option value="Factor">Factor</option>
+						
+							<option value="Forth">Forth</option>
+						
+							<option value="Fortran">Fortran</option>
+						
+							<option value="Go">Go</option>
+						
+							<option value="Haskell">Haskell</option>
+						
+							<option value="Haxe">Haxe</option>
+						
+							<option value="Java">Java</option>
+						
+							<option value="JavaScript">JavaScript</option>
+						
+							<option value="Julia">Julia</option>
+						
+							<option value="Koka">Koka</option>
+						
+							<option value="Kotlin">Kotlin</option>
+						
+							<option value="LLVM IR">LLVM IR</option>
+						
+							<option value="Lua">Lua</option>
+						
+							<option value="Mercury">Mercury</option>
+						
+							<option value="Nibbles">Nibbles</option>
+						
+							<option value="Nim">Nim</option>
+						
+							<option value="OCaml">OCaml</option>
+						
+							<option value="Octave">Octave</option>
+						
+							<option value="PHP">PHP</option>
+						
+							<option value="Pascal">Pascal</option>
+						
+							<option value="Perl">Perl</option>
+						
+							<option value="PowerShell">PowerShell</option>
+						
+							<option value="Prolog">Prolog</option>
+						
+							<option value="Python">Python</option>
+						
+							<option value="R">R</option>
+						
+							<option value="Raku">Raku</option>
+						
+							<option value="ReasonML">ReasonML</option>
+						
+							<option value="Ruby">Ruby</option>
+						
+							<option value="Rust">Rust</option>
+						
+							<option value="SageMath">SageMath</option>
+						
+							<option value="Scala">Scala</option>
+						
+							<option value="Scheme">Scheme</option>
+						
+							<option value="Sed">Sed</option>
+						
+							<option value="Seed7">Seed7</option>
+						
+							<option value="Swift">Swift</option>
+						
+							<option value="Text">Text</option>
+						
+							<option value="TypeScript">TypeScript</option>
+						
+							<option value="Unison">Unison</option>
+						
+							<option value="V">V</option>
+						
+							<option value="Vim">Vim</option>
+						
+							<option value="Visual Basic">Visual Basic</option>
+						
+							<option value="Whitespace">Whitespace</option>
+						
+							<option value="Zig">Zig</option>
+						
+							<option value="Zsh">Zsh</option>
+						
+							<option value="bc">bc</option>
+						
+							<option value="dc">dc</option>
+						
+							<option value="jq">jq</option>
+						
+							<option value="なでしこ">なでしこ</option>
+						
+							<option value="プロデル">プロデル</option>
+						
+					</select>
+				</div>
+				
+			
+			
+			<div class="form-group form-group-sm">
+				<label for="select-status">結果: </label>
+				<select id="select-status" class="form-control" style="width:80px;" data-placeholder="-" data-allow-clear="true" name="f.Status">
+					<option></option>
+					
+						<option value="AC">AC</option>
+					
+						<option value="WA">WA</option>
+					
+						<option value="TLE">TLE</option>
+					
+						<option value="MLE">MLE</option>
+					
+						<option value="RE">RE</option>
+					
+						<option value="CE">CE</option>
+					
+						<option value="QLE">QLE</option>
+					
+						<option value="OLE">OLE</option>
+					
+						<option value="IE">IE</option>
+					
+						<option value="WJ">WJ</option>
+					
+						<option value="WR">WR</option>
+					
+						<option value="Judging">Judging</option>
+					
+				</select>
+			</div>
+			
+			
+			<div class="form-group form-group-sm">
+				<label for="input-user">ユーザ: </label>
+				<input type="text" id="input-user" class="form-control" name="f.User" value="">
+			</div>
+			
+			<div class="form-group">
+				<div>
+					<a class="btn btn-link btn-xs" href="/contests/abc416/submissions">リセット</a>
+					<button type="submit" class="btn btn-primary btn-sm">検索</button>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	
+		<div class="table-responsive">
+			<table class="table table-bordered table-striped small th-center">
+				<thead>
+				<tr>
+					
+					<th width="12%"><a href="/contests/abc416/submissions?desc=true&amp;f.LanguageName=&amp;f.Status=&amp;f.Task=abc416_a&amp;f.User=&amp;orderBy=created&amp;page=2">提出日時</a></th>
+					<th>問題</th>
+					<th>ユーザ</th>
+					<th>言語</th>
+					<th width="5%"><a href="/contests/abc416/submissions?desc=true&amp;f.LanguageName=&amp;f.Status=&amp;f.Task=abc416_a&amp;f.User=&amp;orderBy=score&amp;page=2">得点</a></th>
+					<th width="9%"><a href="/contests/abc416/submissions?f.LanguageName=&amp;f.Status=&amp;f.Task=abc416_a&amp;f.User=&amp;orderBy=source_length&amp;page=2">コード長</a></th>
+					<th width="5%">結果</th>
+					<th width="7%"><a href="/contests/abc416/submissions?f.LanguageName=&amp;f.Status=&amp;f.Task=abc416_a&amp;f.User=&amp;orderBy=time_consumption&amp;page=2">実行時間</a></th>
+					<th width="8%"><a href="/contests/abc416/submissions?f.LanguageName=&amp;f.Status=&amp;f.Task=abc416_a&amp;f.User=&amp;orderBy=memory_consumption&amp;page=2">メモリ</a></th>
+					<th width="5%"></th>
+				</tr>
+				</thead>
+				<tbody>
+				
+					<tr>
+						
+						<td class="no-break"><time class='fixtime fixtime-second'>2025-07-30 20:44:02+0900</time></td>
+						<td><a href="/contests/abc416/tasks/abc416_a">A - Vacation Validation</a></td>
+						<td><a href="/users/ngtquan">ngtquan</a> <a href='/contests/abc416/submissions?f.User=ngtquan'><span class='glyphicon glyphicon-search black' aria-hidden='true' data-toggle='tooltip' title='ngtquanさんの提出を見る'></span></a></td>
+						<td><a href="/contests/abc416/submissions?f.Language=5078&amp;f.LanguageName=&amp;f.Status=&amp;f.Task=abc416_a&amp;f.User=&amp;page=2">Python (PyPy 3.10-v7.3.12)</a></td>
+						<td class="text-right submission-score" data-id="68051145">0</td>
+						<td class="text-right">387 Byte</td>
+						<td class='text-center'><span class='label label-warning' data-toggle='tooltip' data-placement='top' title="実行時エラー">RE</span></td><td class='text-right'>115 ms</td><td class='text-right'>84136 KiB</td>
+						<td class="text-center">
+							<a href="/contests/abc416/submissions/68051145" class="submission-details-link">詳細</a>
+						</td>
+					</tr>
+				
+					<tr>
+						
+						<td class="no-break"><time class='fixtime fixtime-second'>2025-07-30 20:41:41+0900</time></td>
+						<td><a href="/contests/abc416/tasks/abc416_a">A - Vacation Validation</a></td>
+						<td><a href="/users/ngtquan">ngtquan</a> <a href='/contests/abc416/submissions?f.User=ngtquan'><span class='glyphicon glyphicon-search black' aria-hidden='true' data-toggle='tooltip' title='ngtquanさんの提出を見る'></span></a></td>
+						<td><a href="/contests/abc416/submissions?f.Language=5078&amp;f.LanguageName=&amp;f.Status=&amp;f.Task=abc416_a&amp;f.User=&amp;page=2">Python (PyPy 3.10-v7.3.12)</a></td>
+						<td class="text-right submission-score" data-id="68051103">0</td>
+						<td class="text-right">262 Byte</td>
+						<td class='text-center'><span class='label label-warning' data-toggle='tooltip' data-placement='top' title="実行時エラー">RE</span></td><td class='text-right'>114 ms</td><td class='text-right'>84028 KiB</td>
+						<td class="text-center">
+							<a href="/contests/abc416/submissions/68051103" class="submission-details-link">詳細</a>
+						</td>
+					</tr>
+				
+					<tr>
+						
+						<td class="no-break"><time class='fixtime fixtime-second'>2025-07-30 20:38:41+0900</time></td>
+						<td><a href="/contests/abc416/tasks/abc416_a">A - Vacation Validation</a></td>
+						<td><a href="/users/ngtquan">ngtquan</a> <a href='/contests/abc416/submissions?f.User=ngtquan'><span class='glyphicon glyphicon-search black' aria-hidden='true' data-toggle='tooltip' title='ngtquanさんの提出を見る'></span></a></td>
+						<td><a href="/contests/abc416/submissions?f.Language=5078&amp;f.LanguageName=&amp;f.Status=&amp;f.Task=abc416_a&amp;f.User=&amp;page=2">Python (PyPy 3.10-v7.3.12)</a></td>
+						<td class="text-right submission-score" data-id="68051066">0</td>
+						<td class="text-right">262 Byte</td>
+						<td class='text-center'><span class='label label-warning' data-toggle='tooltip' data-placement='top' title="不正解">WA</span></td><td class='text-right'>59 ms</td><td class='text-right'>76508 KiB</td>
+						<td class="text-center">
+							<a href="/contests/abc416/submissions/68051066" class="submission-details-link">詳細</a>
+						</td>
+					</tr>
+				
+					<tr>
+						
+						<td class="no-break"><time class='fixtime fixtime-second'>2025-07-30 20:38:36+0900</time></td>
+						<td><a href="/contests/abc416/tasks/abc416_a">A - Vacation Validation</a></td>
+						<td><a href="/users/DaSongBaoBao">DaSongBaoBao</a> <a href='/contests/abc416/submissions?f.User=DaSongBaoBao'><span class='glyphicon glyphicon-search black' aria-hidden='true' data-toggle='tooltip' title='DaSongBaoBaoさんの提出を見る'></span></a></td>
+						<td><a href="/contests/abc416/submissions?f.Language=5072&amp;f.LanguageName=&amp;f.Status=&amp;f.Task=abc416_a&amp;f.User=&amp;page=2">C&#43;&#43; 17 (Clang 16.0.6)</a></td>
+						<td class="text-right submission-score" data-id="68051064">100</td>
+						<td class="text-right">236 Byte</td>
+						<td class='text-center'><span class='label label-success' data-toggle='tooltip' data-placement='top' title="正解">AC</span></td><td class='text-right'>2 ms</td><td class='text-right'>3668 KiB</td>
+						<td class="text-center">
+							<a href="/contests/abc416/submissions/68051064" class="submission-details-link">詳細</a>
+						</td>
+					</tr>
+				
+					<tr>
+						
+						<td class="no-break"><time class='fixtime fixtime-second'>2025-07-30 20:30:18+0900</time></td>
+						<td><a href="/contests/abc416/tasks/abc416_a">A - Vacation Validation</a></td>
+						<td><a href="/users/ngtquan">ngtquan</a> <a href='/contests/abc416/submissions?f.User=ngtquan'><span class='glyphicon glyphicon-search black' aria-hidden='true' data-toggle='tooltip' title='ngtquanさんの提出を見る'></span></a></td>
+						<td><a href="/contests/abc416/submissions?f.Language=5078&amp;f.LanguageName=&amp;f.Status=&amp;f.Task=abc416_a&amp;f.User=&amp;page=2">Python (PyPy 3.10-v7.3.12)</a></td>
+						<td class="text-right submission-score" data-id="68050916">0</td>
+						<td class="text-right">153 Byte</td>
+						<td class='text-center'><span class='label label-warning' data-toggle='tooltip' data-placement='top' title="不正解">WA</span></td><td class='text-right'>57 ms</td><td class='text-right'>76716 KiB</td>
+						<td class="text-center">
+							<a href="/contests/abc416/submissions/68050916" class="submission-details-link">詳細</a>
+						</td>
+					</tr>
+				
+					<tr>
+						
+						<td class="no-break"><time class='fixtime fixtime-second'>2025-07-30 20:28:29+0900</time></td>
+						<td><a href="/contests/abc416/tasks/abc416_a">A - Vacation Validation</a></td>
+						<td><a href="/users/mourad2001Munise">mourad2001Munise</a> <a href='/contests/abc416/submissions?f.User=mourad2001Munise'><span class='glyphicon glyphicon-search black' aria-hidden='true' data-toggle='tooltip' title='mourad2001Muniseさんの提出を見る'></span></a></td>
+						<td><a href="/contests/abc416/submissions?f.Language=5010&amp;f.LanguageName=&amp;f.Status=&amp;f.Task=abc416_a&amp;f.User=&amp;page=2">JavaScript (Deno 1.35.1)</a></td>
+						<td class="text-right submission-score" data-id="68050887">100</td>
+						<td class="text-right">650 Byte</td>
+						<td class='text-center'><span class='label label-success' data-toggle='tooltip' data-placement='top' title="正解">AC</span></td><td class='text-right'>73 ms</td><td class='text-right'>44076 KiB</td>
+						<td class="text-center">
+							<a href="/contests/abc416/submissions/68050887" class="submission-details-link">詳細</a>
+						</td>
+					</tr>
+				
+					<tr>
+						
+						<td class="no-break"><time class='fixtime fixtime-second'>2025-07-30 20:27:44+0900</time></td>
+						<td><a href="/contests/abc416/tasks/abc416_a">A - Vacation Validation</a></td>
+						<td><a href="/users/ngtquan">ngtquan</a> <a href='/contests/abc416/submissions?f.User=ngtquan'><span class='glyphicon glyphicon-search black' aria-hidden='true' data-toggle='tooltip' title='ngtquanさんの提出を見る'></span></a></td>
+						<td><a href="/contests/abc416/submissions?f.Language=5078&amp;f.LanguageName=&amp;f.Status=&amp;f.Task=abc416_a&amp;f.User=&amp;page=2">Python (PyPy 3.10-v7.3.12)</a></td>
+						<td class="text-right submission-score" data-id="68050864">0</td>
+						<td class="text-right">164 Byte</td>
+						<td class='text-center'><span class='label label-warning' data-toggle='tooltip' data-placement='top' title="不正解">WA</span></td><td class='text-right'>59 ms</td><td class='text-right'>76780 KiB</td>
+						<td class="text-center">
+							<a href="/contests/abc416/submissions/68050864" class="submission-details-link">詳細</a>
+						</td>
+					</tr>
+				
+					<tr>
+						
+						<td class="no-break"><time class='fixtime fixtime-second'>2025-07-30 20:26:44+0900</time></td>
+						<td><a href="/contests/abc416/tasks/abc416_a">A - Vacation Validation</a></td>
+						<td><a href="/users/mourad2001Munise">mourad2001Munise</a> <a href='/contests/abc416/submissions?f.User=mourad2001Munise'><span class='glyphicon glyphicon-search black' aria-hidden='true' data-toggle='tooltip' title='mourad2001Muniseさんの提出を見る'></span></a></td>
+						<td><a href="/contests/abc416/submissions?f.Language=5010&amp;f.LanguageName=&amp;f.Status=&amp;f.Task=abc416_a&amp;f.User=&amp;page=2">JavaScript (Deno 1.35.1)</a></td>
+						<td class="text-right submission-score" data-id="68050851">0</td>
+						<td class="text-right">653 Byte</td>
+						<td class='text-center'><span class='label label-warning' data-toggle='tooltip' data-placement='top' title="実行時エラー">RE</span></td><td class='text-right'>68 ms</td><td class='text-right'>44008 KiB</td>
+						<td class="text-center">
+							<a href="/contests/abc416/submissions/68050851" class="submission-details-link">詳細</a>
+						</td>
+					</tr>
+				
+					<tr>
+						
+						<td class="no-break"><time class='fixtime fixtime-second'>2025-07-30 20:25:52+0900</time></td>
+						<td><a href="/contests/abc416/tasks/abc416_a">A - Vacation Validation</a></td>
+						<td><a href="/users/ngtquan">ngtquan</a> <a href='/contests/abc416/submissions?f.User=ngtquan'><span class='glyphicon glyphicon-search black' aria-hidden='true' data-toggle='tooltip' title='ngtquanさんの提出を見る'></span></a></td>
+						<td><a href="/contests/abc416/submissions?f.Language=5078&amp;f.LanguageName=&amp;f.Status=&amp;f.Task=abc416_a&amp;f.User=&amp;page=2">Python (PyPy 3.10-v7.3.12)</a></td>
+						<td class="text-right submission-score" data-id="68050831">0</td>
+						<td class="text-right">324 Byte</td>
+						<td class='text-center'><span class='label label-warning' data-toggle='tooltip' data-placement='top' title="不正解">WA</span></td><td class='text-right'>60 ms</td><td class='text-right'>76880 KiB</td>
+						<td class="text-center">
+							<a href="/contests/abc416/submissions/68050831" class="submission-details-link">詳細</a>
+						</td>
+					</tr>
+				
+					<tr>
+						
+						<td class="no-break"><time class='fixtime fixtime-second'>2025-07-30 20:24:56+0900</time></td>
+						<td><a href="/contests/abc416/tasks/abc416_a">A - Vacation Validation</a></td>
+						<td><a href="/users/ngtquan">ngtquan</a> <a href='/contests/abc416/submissions?f.User=ngtquan'><span class='glyphicon glyphicon-search black' aria-hidden='true' data-toggle='tooltip' title='ngtquanさんの提出を見る'></span></a></td>
+						<td><a href="/contests/abc416/submissions?f.Language=5055&amp;f.LanguageName=&amp;f.Status=&amp;f.Task=abc416_a&amp;f.User=&amp;page=2">Python (CPython 3.11.4)</a></td>
+						<td class="text-right submission-score" data-id="68050818">0</td>
+						<td class="text-right">157 Byte</td>
+						<td class='text-center'><span class='label label-warning' data-toggle='tooltip' data-placement='top' title="不正解">WA</span></td><td class='text-right'>10 ms</td><td class='text-right'>8644 KiB</td>
+						<td class="text-center">
+							<a href="/contests/abc416/submissions/68050818" class="submission-details-link">詳細</a>
+						</td>
+					</tr>
+				
+					<tr>
+						
+						<td class="no-break"><time class='fixtime fixtime-second'>2025-07-30 20:24:23+0900</time></td>
+						<td><a href="/contests/abc416/tasks/abc416_a">A - Vacation Validation</a></td>
+						<td><a href="/users/ngtquan">ngtquan</a> <a href='/contests/abc416/submissions?f.User=ngtquan'><span class='glyphicon glyphicon-search black' aria-hidden='true' data-toggle='tooltip' title='ngtquanさんの提出を見る'></span></a></td>
+						<td><a href="/contests/abc416/submissions?f.Language=5078&amp;f.LanguageName=&amp;f.Status=&amp;f.Task=abc416_a&amp;f.User=&amp;page=2">Python (PyPy 3.10-v7.3.12)</a></td>
+						<td class="text-right submission-score" data-id="68050807">0</td>
+						<td class="text-right">157 Byte</td>
+						<td class='text-center'><span class='label label-warning' data-toggle='tooltip' data-placement='top' title="不正解">WA</span></td><td class='text-right'>58 ms</td><td class='text-right'>76768 KiB</td>
+						<td class="text-center">
+							<a href="/contests/abc416/submissions/68050807" class="submission-details-link">詳細</a>
+						</td>
+					</tr>
+				
+					<tr>
+						
+						<td class="no-break"><time class='fixtime fixtime-second'>2025-07-30 20:16:19+0900</time></td>
+						<td><a href="/contests/abc416/tasks/abc416_a">A - Vacation Validation</a></td>
+						<td><a href="/users/puppetttt">puppetttt</a> <a href='/contests/abc416/submissions?f.User=puppetttt'><span class='glyphicon glyphicon-search black' aria-hidden='true' data-toggle='tooltip' title='puppettttさんの提出を見る'></span></a></td>
+						<td><a href="/contests/abc416/submissions?f.Language=5001&amp;f.LanguageName=&amp;f.Status=&amp;f.Task=abc416_a&amp;f.User=&amp;page=2">C&#43;&#43; 20 (gcc 12.2)</a></td>
+						<td class="text-right submission-score" data-id="68050673">100</td>
+						<td class="text-right">1221 Byte</td>
+						<td class='text-center'><span class='label label-success' data-toggle='tooltip' data-placement='top' title="正解">AC</span></td><td class='text-right'>1 ms</td><td class='text-right'>3596 KiB</td>
+						<td class="text-center">
+							<a href="/contests/abc416/submissions/68050673" class="submission-details-link">詳細</a>
+						</td>
+					</tr>
+				
+					<tr>
+						
+						<td class="no-break"><time class='fixtime fixtime-second'>2025-07-30 20:15:04+0900</time></td>
+						<td><a href="/contests/abc416/tasks/abc416_a">A - Vacation Validation</a></td>
+						<td><a href="/users/cpppog">cpppog</a> <a href='/contests/abc416/submissions?f.User=cpppog'><span class='glyphicon glyphicon-search black' aria-hidden='true' data-toggle='tooltip' title='cpppogさんの提出を見る'></span></a></td>
+						<td><a href="/contests/abc416/submissions?f.Language=5001&amp;f.LanguageName=&amp;f.Status=&amp;f.Task=abc416_a&amp;f.User=&amp;page=2">C&#43;&#43; 20 (gcc 12.2)</a></td>
+						<td class="text-right submission-score" data-id="68050644">100</td>
+						<td class="text-right">300 Byte</td>
+						<td class='text-center'><span class='label label-success' data-toggle='tooltip' data-placement='top' title="正解">AC</span></td><td class='text-right'>1 ms</td><td class='text-right'>3684 KiB</td>
+						<td class="text-center">
+							<a href="/contests/abc416/submissions/68050644" class="submission-details-link">詳細</a>
+						</td>
+					</tr>
+				
+					<tr>
+						
+						<td class="no-break"><time class='fixtime fixtime-second'>2025-07-30 20:13:24+0900</time></td>
+						<td><a href="/contests/abc416/tasks/abc416_a">A - Vacation Validation</a></td>
+						<td><a href="/users/alowais">alowais</a> <a href='/contests/abc416/submissions?f.User=alowais'><span class='glyphicon glyphicon-search black' aria-hidden='true' data-toggle='tooltip' title='alowaisさんの提出を見る'></span></a></td>
+						<td><a href="/contests/abc416/submissions?f.Language=5001&amp;f.LanguageName=&amp;f.Status=&amp;f.Task=abc416_a&amp;f.User=&amp;page=2">C&#43;&#43; 20 (gcc 12.2)</a></td>
+						<td class="text-right submission-score" data-id="68050607">0</td>
+						<td class="text-right">365 Byte</td>
+						<td colspan='3' class='text-center'><span class='label label-warning' data-toggle='tooltip' data-placement='top' title="コンパイルエラー">CE</span></td>
+						<td class="text-center">
+							<a href="/contests/abc416/submissions/68050607" class="submission-details-link">詳細</a>
+						</td>
+					</tr>
+				
+					<tr>
+						
+						<td class="no-break"><time class='fixtime fixtime-second'>2025-07-30 20:04:45+0900</time></td>
+						<td><a href="/contests/abc416/tasks/abc416_a">A - Vacation Validation</a></td>
+						<td><a href="/users/ngtquan">ngtquan</a> <a href='/contests/abc416/submissions?f.User=ngtquan'><span class='glyphicon glyphicon-search black' aria-hidden='true' data-toggle='tooltip' title='ngtquanさんの提出を見る'></span></a></td>
+						<td><a href="/contests/abc416/submissions?f.Language=5078&amp;f.LanguageName=&amp;f.Status=&amp;f.Task=abc416_a&amp;f.User=&amp;page=2">Python (PyPy 3.10-v7.3.12)</a></td>
+						<td class="text-right submission-score" data-id="68050400">0</td>
+						<td class="text-right">155 Byte</td>
+						<td class='text-center'><span class='label label-warning' data-toggle='tooltip' data-placement='top' title="不正解">WA</span></td><td class='text-right'>58 ms</td><td class='text-right'>76728 KiB</td>
+						<td class="text-center">
+							<a href="/contests/abc416/submissions/68050400" class="submission-details-link">詳細</a>
+						</td>
+					</tr>
+				
+					<tr>
+						
+						<td class="no-break"><time class='fixtime fixtime-second'>2025-07-30 20:02:40+0900</time></td>
+						<td><a href="/contests/abc416/tasks/abc416_a">A - Vacation Validation</a></td>
+						<td><a href="/users/AbodeKu">AbodeKu</a> <a href='/contests/abc416/submissions?f.User=AbodeKu'><span class='glyphicon glyphicon-search black' aria-hidden='true' data-toggle='tooltip' title='AbodeKuさんの提出を見る'></span></a></td>
+						<td><a href="/contests/abc416/submissions?f.Language=5001&amp;f.LanguageName=&amp;f.Status=&amp;f.Task=abc416_a&amp;f.User=&amp;page=2">C&#43;&#43; 20 (gcc 12.2)</a></td>
+						<td class="text-right submission-score" data-id="68050350">100</td>
+						<td class="text-right">1919 Byte</td>
+						<td class='text-center'><span class='label label-success' data-toggle='tooltip' data-placement='top' title="正解">AC</span></td><td class='text-right'>1 ms</td><td class='text-right'>3608 KiB</td>
+						<td class="text-center">
+							<a href="/contests/abc416/submissions/68050350" class="submission-details-link">詳細</a>
+						</td>
+					</tr>
+				
+					<tr>
+						
+						<td class="no-break"><time class='fixtime fixtime-second'>2025-07-30 19:53:52+0900</time></td>
+						<td><a href="/contests/abc416/tasks/abc416_a">A - Vacation Validation</a></td>
+						<td><a href="/users/wzl19371">wzl19371</a> <a href='/contests/abc416/submissions?f.User=wzl19371'><span class='glyphicon glyphicon-search black' aria-hidden='true' data-toggle='tooltip' title='wzl19371さんの提出を見る'></span></a></td>
+						<td><a href="/contests/abc416/submissions?f.Language=5001&amp;f.LanguageName=&amp;f.Status=&amp;f.Task=abc416_a&amp;f.User=&amp;page=2">C&#43;&#43; 20 (gcc 12.2)</a></td>
+						<td class="text-right submission-score" data-id="68050205">100</td>
+						<td class="text-right">769 Byte</td>
+						<td class='text-center'><span class='label label-success' data-toggle='tooltip' data-placement='top' title="正解">AC</span></td><td class='text-right'>1 ms</td><td class='text-right'>3664 KiB</td>
+						<td class="text-center">
+							<a href="/contests/abc416/submissions/68050205" class="submission-details-link">詳細</a>
+						</td>
+					</tr>
+				
+					<tr>
+						
+						<td class="no-break"><time class='fixtime fixtime-second'>2025-07-30 19:45:06+0900</time></td>
+						<td><a href="/contests/abc416/tasks/abc416_a">A - Vacation Validation</a></td>
+						<td><a href="/users/liuruiqian">liuruiqian</a> <a href='/contests/abc416/submissions?f.User=liuruiqian'><span class='glyphicon glyphicon-search black' aria-hidden='true' data-toggle='tooltip' title='liuruiqianさんの提出を見る'></span></a></td>
+						<td><a href="/contests/abc416/submissions?f.Language=5001&amp;f.LanguageName=&amp;f.Status=&amp;f.Task=abc416_a&amp;f.User=&amp;page=2">C&#43;&#43; 20 (gcc 12.2)</a></td>
+						<td class="text-right submission-score" data-id="68050125">100</td>
+						<td class="text-right">364 Byte</td>
+						<td class='text-center'><span class='label label-success' data-toggle='tooltip' data-placement='top' title="正解">AC</span></td><td class='text-right'>1 ms</td><td class='text-right'>3604 KiB</td>
+						<td class="text-center">
+							<a href="/contests/abc416/submissions/68050125" class="submission-details-link">詳細</a>
+						</td>
+					</tr>
+				
+					<tr>
+						
+						<td class="no-break"><time class='fixtime fixtime-second'>2025-07-30 19:43:50+0900</time></td>
+						<td><a href="/contests/abc416/tasks/abc416_a">A - Vacation Validation</a></td>
+						<td><a href="/users/MYD_DL24">MYD_DL24</a> <a href='/contests/abc416/submissions?f.User=MYD_DL24'><span class='glyphicon glyphicon-search black' aria-hidden='true' data-toggle='tooltip' title='MYD_DL24さんの提出を見る'></span></a></td>
+						<td><a href="/contests/abc416/submissions?f.Language=5001&amp;f.LanguageName=&amp;f.Status=&amp;f.Task=abc416_a&amp;f.User=&amp;page=2">C&#43;&#43; 20 (gcc 12.2)</a></td>
+						<td class="text-right submission-score" data-id="68050110">100</td>
+						<td class="text-right">355 Byte</td>
+						<td class='text-center'><span class='label label-success' data-toggle='tooltip' data-placement='top' title="正解">AC</span></td><td class='text-right'>1 ms</td><td class='text-right'>3884 KiB</td>
+						<td class="text-center">
+							<a href="/contests/abc416/submissions/68050110" class="submission-details-link">詳細</a>
+						</td>
+					</tr>
+				
+					<tr>
+						
+						<td class="no-break"><time class='fixtime fixtime-second'>2025-07-30 19:39:03+0900</time></td>
+						<td><a href="/contests/abc416/tasks/abc416_a">A - Vacation Validation</a></td>
+						<td><a href="/users/Wonder_Strannik">Wonder_Strannik</a> <a href='/contests/abc416/submissions?f.User=Wonder_Strannik'><span class='glyphicon glyphicon-search black' aria-hidden='true' data-toggle='tooltip' title='Wonder_Strannikさんの提出を見る'></span></a></td>
+						<td><a href="/contests/abc416/submissions?f.Language=5001&amp;f.LanguageName=&amp;f.Status=&amp;f.Task=abc416_a&amp;f.User=&amp;page=2">C&#43;&#43; 20 (gcc 12.2)</a></td>
+						<td class="text-right submission-score" data-id="68050067">100</td>
+						<td class="text-right">704 Byte</td>
+						<td class='text-center'><span class='label label-success' data-toggle='tooltip' data-placement='top' title="正解">AC</span></td><td class='text-right'>1 ms</td><td class='text-right'>3664 KiB</td>
+						<td class="text-center">
+							<a href="/contests/abc416/submissions/68050067" class="submission-details-link">詳細</a>
+						</td>
+					</tr>
+				
+				</tbody>
+			</table>
+		</div>
+	
+</div>
+
+<nav>
+	<ul class="pager">
+		
+		<li><a href="/contests/abc416/submissions?f.LanguageName=&amp;f.Status=&amp;f.Task=abc416_a&amp;f.User=&amp;page=1">&lt; Prev</a></li>
+		
+		
+		<li><a href="/contests/abc416/submissions?f.LanguageName=&amp;f.Status=&amp;f.Task=abc416_a&amp;f.User=&amp;page=3">Next &gt;</a></li>
+		
+	</ul>
+</nav>
+
+<script>var reloadInterval =  5000 ;</script>
+
+	</div>
+</div>
+
+
+
+
+		
+			<hr>
+			
+			
+			
+<div class="a2a_kit a2a_kit_size_20 a2a_default_style pull-right" data-a2a-url="https://atcoder.jp/contests/abc416/submissions?f.LanguageName=&amp;f.Status=&amp;f.Task=abc416_a&amp;f.User=&amp;lang=ja&amp;page=2" data-a2a-title="すべての提出 - AtCoder Beginner Contest 416">
+	<a class="a2a_button_facebook"></a>
+	<a class="a2a_button_twitter"></a>
+	
+		<a class="a2a_button_hatena"></a>
+	
+	<a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+</div>
+
+		
+		<script async src="//static.addtoany.com/menu/page.js"></script>
+		
+	</div> 
+	<hr>
+</div> 
+
+	<div class="container" style="margin-bottom: 80px;">
+			<footer class="footer">
+			
+				<ul>
+					<li><a href="/contests/abc416/rules">ルール</a></li>
+					<li><a href="/contests/abc416/glossary">用語集</a></li>
+					
+				</ul>
+			
+			<ul>
+				<li><a href="/tos">利用規約</a></li>
+				<li><a href="/privacy">プライバシーポリシー</a></li>
+				<li><a href="/personal">個人情報保護方針</a></li>
+				<li><a href="/company">企業情報</a></li>
+				<li><a href="/faq">よくある質問</a></li>
+				<li><a href="/contact">お問い合わせ</a></li>
+				<li><a href="/documents/request">資料請求</a></li>
+			</ul>
+			<div class="text-center">
+					<small id="copyright">Copyright Since 2012 &copy;<a href="http://atcoder.co.jp">AtCoder Inc.</a> All rights reserved.</small>
+			</div>
+			</footer>
+	</div>
+	<p id="fixed-server-timer" class="contest-timer"></p>
+	<div id="scroll-page-top" style="display:none;"><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span> ページトップ</div>
+
+</body>
+</html>
+
+
