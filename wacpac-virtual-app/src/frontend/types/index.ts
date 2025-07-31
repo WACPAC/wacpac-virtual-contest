@@ -26,6 +26,7 @@ export interface User {
   atcoderId: string;
   contestId: string;
   submissions?: Submission[];
+  ratingColor: string;
 }
 
 export interface Submission {
@@ -66,4 +67,4 @@ export interface CreateProblemRequest {
 
 export interface CreateUserRequest {
   atcoderId: string;
-} 
+}

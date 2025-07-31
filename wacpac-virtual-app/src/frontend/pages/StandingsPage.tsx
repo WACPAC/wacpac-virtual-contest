@@ -96,21 +96,20 @@ export const StandingsPageComponent: React.FC<StandingsPageComponentProps> = ({
     }
   };
 
-  const endTime = contest?.startTime ? new Date(contest.startTime).getTime() + contest?.durationMinutes * 60 * 1000 : undefined;
   const [remainTime, setRemainTime] = useState<string | undefined>(undefined);
   useEffect(() => {
-    const interval = setInterval(() => {
+      const endTime = contest?.startTime ? new Date(contest.startTime).getTime() + contest?.durationMinutes * 60 * 1000 : undefined;    const interval = setInterval(() => {
       const currentTime = new Date().getTime();
       const toEndTime = endTime ? endTime - currentTime : undefined;
       if (toEndTime) {
         const hours = Math.floor(toEndTime / (1000 * 60 * 60));
         const minutes = Math.floor((toEndTime % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((toEndTime % (1000 * 60)) / 1000);
-        setRemainTime(`${hours}時間${minutes}分${seconds}秒`);
+        setRemainTime(`${hours}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`);
       }
     }, 1000);
     return () => clearInterval(interval);
-  }, []);
+  }, [contest]);
 
   return (
     <Layout title="WACPAC Virtual Contest - 順位表">
@@ -138,19 +137,21 @@ export const StandingsPageComponent: React.FC<StandingsPageComponentProps> = ({
           <Typography variant="h4">
             {`${contestName} - 順位表`}
           </Typography>
-          {contest && (
-            <Chip
-              label={contest.status === 'before' ? '開始前' : contest.status === 'running' ? '実行中' : '終了'}
-              color={getStatusColor(contest.status) as any}
-              size="small"
-            />
-          )}
-          {contest && contest.status === 'running' && (
-            <Chip
-              label={remainTime}
-              size="small"
-            />
-          )}
+          <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1, justifyContent: 'space-between' }}>
+            {contest && (
+              <Chip
+                label={contest.status === 'before' ? '開始前' : contest.status === 'running' ? '実行中' : '終了'}
+                color={getStatusColor(contest.status) as any}
+                size="small"
+              />
+            )}
+            {contest && contest.status === 'running' && (
+              <Chip
+                label={`残り ${remainTime}`}
+                sx={{ fontSize: '1.1rem' }}
+              />
+            )}
+          </Box>
         </Box>
 
         {/* Controls */}

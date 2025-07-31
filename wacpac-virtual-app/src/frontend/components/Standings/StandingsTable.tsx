@@ -52,7 +52,7 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, probl
       return (
         <TableCell align="center">
           <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <Typography variant="body2" sx={{ fontWeight: 'bold', color: 'success.main' }}>
+            <Typography variant="body2" sx={{ fontSize: '1.1rem', fontWeight: 'bold', color: 'success.main' }}>
               {result.score}
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
@@ -87,30 +87,34 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, probl
       <Table size="small" stickyHeader>
         <TableHead>
           <TableRow>
-            <TableCell align="center" sx={{ fontWeight: 'bold', minWidth: 60 }}>
+            <TableCell align="center" sx={{ fontSize: '1.1rem', fontWeight: 'bold', minWidth: 60 }}>
               順位
             </TableCell>
-            <TableCell sx={{ fontWeight: 'bold', minWidth: 120 }}>
+            <TableCell sx={{ fontSize: '1.1rem', fontWeight: 'bold', minWidth: 120 }}>
               ユーザー名
             </TableCell>
-            <TableCell align="center" sx={{ fontWeight: 'bold', minWidth: 80 }}>
+            <TableCell align="center" sx={{ fontSize: '1.1rem', fontWeight: 'bold', minWidth: 80 }}>
               得点
             </TableCell>
-            <TableCell align="center" sx={{ fontWeight: 'bold', minWidth: 80 }}>
+            <TableCell align="center" sx={{ fontSize: '1.1rem', fontWeight: 'bold', minWidth: 80 }}>
               時間
             </TableCell>
             {problems.map((problem, index) => (
               <TableCell 
                 key={problem.id} 
                 align="center" 
-                sx={{ fontWeight: 'bold', minWidth: 80 }}
+                sx={{ fontSize: '1.1rem', fontWeight: 'bold', minWidth: 80 }}
               >
-                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                  <Typography variant="subtitle2">
+                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', cursor: 'pointer', '&:hover': {
+                  textDecoration: 'underline',
+                }}} onClick={() => {
+                  window.open(problem.problemUrl, '_blank');
+                }}>
+                  <Typography variant="subtitle2" sx={{ fontSize: '1.1rem' }}>
                     {getProblemLabel(index)}
                   </Typography>
-                  <Typography variant="caption" color="text.secondary">
-                    {problem.points}点
+                  <Typography variant="caption" color="text.secondary" sx={{ fontSize: '0.8rem' }}>
+                    {problem.points}
                   </Typography>
                 </Box>
               </TableCell>
@@ -121,7 +125,7 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, probl
           {standings.map((entry) => (
             <TableRow key={entry.user.id} hover>
               <TableCell align="center">
-                <Chip 
+                <Chip
                   label={entry.rank} 
                   size="small" 
                   color={entry.rank <= 3 ? 'primary' : 'default'}
@@ -129,7 +133,7 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, probl
                 />
               </TableCell>
               <TableCell>
-                <Typography variant="body2" sx={{ fontWeight: 'medium', cursor: 'pointer' }} onClick={() => {
+                <Typography variant="body2" sx={{ fontSize: '1.2rem', fontWeight: 'bold', cursor: 'pointer', color: entry.user.ratingColor }} onClick={() => {
                   window.open(`https://atcoder.jp/users/${entry.user.atcoderId}`, '_blank');
                 }}>
                   {entry.user.atcoderId}
@@ -137,7 +141,7 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, probl
               </TableCell>
               <TableCell align="center">
                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                  <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
+                  <Typography variant="body2" sx={{ fontSize: '1.2rem', fontWeight: 'bold', color: entry.totalScore > 0 ? 'success.main' : 'gray' }}>
                     {entry.totalScore}
                   </Typography>
                   {entry.penalty > 0 && (

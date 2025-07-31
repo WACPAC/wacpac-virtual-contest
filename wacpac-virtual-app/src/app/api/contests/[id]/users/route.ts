@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '../../../../../backend/utils/prisma';
+import * as cheerio from 'cheerio';
+import { assert } from 'console';
 
 export async function GET(
   request: NextRequest,
@@ -65,10 +67,47 @@ export async function POST(
       );
     }
 
+    const atcoderPage = await fetch(`https://atcoder.jp/users/${atcoderId}`);
+    if (atcoderPage.status !== 200) {
+      return NextResponse.json(
+        { error: 'AtCoderIDが見つかりません' },
+        { status: 404 }
+      );
+    }
+
+    const atcoderPageText = await atcoderPage.text();
+    
+    // Use cheerio to parse HTML and extract rating color
+    const $ = cheerio.load(atcoderPageText);
+    
+    // Find the user rating color from the username span
+    let ratingColor: string = 'default';
+    
+    // Look for spans with user color classes (user-gray, user-brown, user-green, user-cyan, user-blue, user-yellow, user-orange, user-red)
+    const userColorClasses = ['user-gray', 'user-brown', 'user-green', 'user-cyan', 'user-blue', 'user-yellow', 'user-orange', 'user-red'];
+    
+    for (const colorClass of userColorClasses) {
+      if ($(`.${colorClass}`).length > 0) {
+        ratingColor = colorClass.split('-')[1];
+        break;
+      }
+    }
+    
+    if (!ratingColor) {
+      ratingColor = 'red';
+    }
+    assert(userColorClasses.includes(ratingColor), `Invalid rating color: ${ratingColor}`);
+
+    ratingColor = {
+      'cyan': '#21A0DB',
+      'yellow': '#FFC800',
+    }[ratingColor] || ratingColor;
+
     const user = await prisma.user.create({
       data: {
         atcoderId,
         contestId,
+        ratingColor,
       },
     });
 

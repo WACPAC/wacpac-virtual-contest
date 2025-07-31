@@ -10,11 +10,39 @@ AtCoderバーチャルコンテスト順位表システムです。AtCoderの問
 
 リポジトリのクローン後、以下の操作を行うとサイトが立ち上がります。
 
-### 1. 依存関係のインストール
+### 必要コマンド全部をまとめたもの
+- 以下の一連のコマンドを実行すれば、環境が立ち上がるはずですが、例えばnpmやdocker等が入っていない場合にエラーが発生します。エラーが発生した時には適宜、以下の1-5の手順を見てください。
+
+```bash
+cd wacpac-virtual-app
+npm ci
+docker-compose up -d db
+npx prisma migrate dev
+npm run dev
+```
+
+### 1. 依存関係のクリーンインストール
 ```bash
 cd wacpac-virtual-app
 npm ci
 ```
+
+<details>
+<summary>トラブルシューティング</summary>
+
+- もしもnpmが入っていない場合、以下の手順でnpmをインストールしてください。
+```bash
+sudo apt update
+curl -fsSL https://deb.nodesource.com/setup_current.x | sudo -E bash -
+sudo apt install -y nodejs
+```
+- 以下のコマンドで、npmのインストールを確認できます(正常にインストールできている場合、versionが表示される)
+```bash
+node -v
+npm -v
+```
+
+</details>
 
 ### 2. 環境変数の設定
 **.envファイルは絶対にcommitしないこと！！！**
@@ -31,8 +59,28 @@ cp env.sample .env
 ### 3. データベースの起動
 ```bash
 # PostgreSQLをDockerで起動
-docker-compose up db -d
+docker-compose up -d db
 ```
+
+<details>
+<summary>トラブルシューティング</summary>
+
+- もしもdockerが入っていない場合、以下の手順でdocker-composeをインストールしてください。
+```bash
+sudo apt update
+sudo apt install docker-compose
+```
+- 以下のコマンドで、docker-composeのインストールを確認できます(正常にインストールできている場合、versionが表示される)
+```bash
+docker-compose --version
+```
+- dockerのpermissonの問題でdocker daemonにアクセスできない場合、以下の手順で現在のユーザをdockerグループに追加してください。
+```
+sudo usermod -aG docker $USER
+newgrp docker
+```
+
+</details>
 
 ### 4. データベースのマイグレーション
 ```bash
@@ -58,7 +106,7 @@ npm run dev
 ### 2. 問題・ユーザー登録
 1. コンテストカードの「管理」ボタンクリック
 2. **問題追加**: AtCoderの問題URLを入力（例: `https://atcoder.jp/contests/abc123/tasks/abc123_a`）
-3. **ユーザー追加**: 参加者のAtCoder IDを入力
+3. **ユーザー追加**: 参加者のAtCoder IDを入力 (正しいIDの場合、ユーザー一覧の名前からatcoderのページに飛べるはず)
 
 ### 3. コンテスト開始
 1. コンテストカードの「開始」ボタンクリック

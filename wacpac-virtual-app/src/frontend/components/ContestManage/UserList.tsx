@@ -19,7 +19,6 @@ import {
   Alert,
 } from '@mui/material';
 import { Delete, Add, Person } from '@mui/icons-material';
-import { CreateUserRequest } from '../../types';
 import { useUsers } from '../../hooks/useUsers';
 
 interface UserListProps {
@@ -111,7 +110,7 @@ export const UserList: React.FC<UserListProps> = ({ contestId }) => {
               <ListItemText
                 primary={
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <Typography variant="subtitle1">
+                    <Typography variant="subtitle1" sx={{ fontWeight: 'bold', color: user.ratingColor }}>
                       {user.atcoderId}
                     </Typography>
                   </Box>
