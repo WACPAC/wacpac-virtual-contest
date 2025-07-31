@@ -1,0 +1,17 @@
+export const userlist: string[] = [
+  'k1suxu',
+  'kuratsuji',
+  'chimaki821',
+  'addnine',
+  'epopaca',
+  'kyomikyomi',
+  'toku4388',
+  'Schwarz',
+  'Bahha',
+  'akiaki96',
+  'kei_0917',
+  'Caryking',
+  'TORiPO4',
+  'KUEN',
+  'glagla',
+]

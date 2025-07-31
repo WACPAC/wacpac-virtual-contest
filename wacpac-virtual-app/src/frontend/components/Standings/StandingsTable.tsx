@@ -152,7 +152,7 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, probl
                 </Box>
               </TableCell>
               <TableCell align="center">
-                <Typography variant="body2">
+                <Typography variant="body2" sx={{ fontSize: '1.1rem' }}>
                   {formatTime(Math.floor((entry.totalTime + entry.penalty * 5 * 60 * 1000) / 1000))}
                 </Typography>
               </TableCell>

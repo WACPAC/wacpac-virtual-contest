@@ -21,8 +21,7 @@ export class ScrapingService {
       const $ = cheerio.load(response.data);
       
       // Extract problem name from span.h2 (例: "A - Vacation Validation")
-      const problemName = $('.col-sm-12 span.h2').first().text().trim() || 
-                         $('title').text().replace(' - AtCoder', '').trim();
+      const problemName = $('title').text().replace(' - AtCoder', '').trim();
       
       // Extract contest_id and problem_id from URL
       const urlMatch = problemUrl.match(/contests\/([^\/]+)\/tasks\/([^\/]+)/);

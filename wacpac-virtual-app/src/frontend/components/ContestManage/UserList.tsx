@@ -17,9 +17,11 @@ import {
   Link,
   CircularProgress,
   Alert,
+  Autocomplete,
 } from '@mui/material';
 import { Delete, Add, Person } from '@mui/icons-material';
 import { useUsers } from '../../hooks/useUsers';
+import { userlist } from '../../consts/userlist';
 
 interface UserListProps {
   contestId: string;
@@ -144,16 +146,30 @@ export const UserList: React.FC<UserListProps> = ({ contestId }) => {
       <Dialog open={isDialogOpen} onClose={() => setIsDialogOpen(false)} maxWidth="sm" fullWidth>
         <DialogTitle>ユーザーを追加</DialogTitle>
         <DialogContent>
-          <TextField
-            autoFocus
-            margin="dense"
-            label="AtCoder ID"
-            fullWidth
-            variant="outlined"
+          <Autocomplete
+            freeSolo
+            options={userlist}
             value={atcoderId}
-            onChange={(e) => setAtcoderId(e.target.value)}
-            placeholder="tourist"
-            helperText="AtCoderのユーザーIDを入力してください"
+            onInputChange={(event, newInputValue) => {
+              setAtcoderId(newInputValue);
+            }}
+            filterOptions={(options, { inputValue }) => {
+              return options.filter(option =>
+                option.toLowerCase().startsWith(inputValue.toLowerCase())
+              );
+            }}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                autoFocus
+                margin="dense"
+                label="AtCoder ID"
+                fullWidth
+                variant="outlined"
+                placeholder="tourist"
+                helperText="AtCoderのユーザーIDを入力してください"
+              />
+            )}
           />
         </DialogContent>
         <DialogActions>
