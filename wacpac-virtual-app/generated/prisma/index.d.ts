@@ -3579,18 +3579,21 @@ export namespace Prisma {
   export type UserMinAggregateOutputType = {
     id: string | null
     atcoderId: string | null
+    ratingColor: string | null
     contestId: string | null
   }
 
   export type UserMaxAggregateOutputType = {
     id: string | null
     atcoderId: string | null
+    ratingColor: string | null
     contestId: string | null
   }
 
   export type UserCountAggregateOutputType = {
     id: number
     atcoderId: number
+    ratingColor: number
     contestId: number
     _all: number
   }
@@ -3599,18 +3602,21 @@ export namespace Prisma {
   export type UserMinAggregateInputType = {
     id?: true
     atcoderId?: true
+    ratingColor?: true
     contestId?: true
   }
 
   export type UserMaxAggregateInputType = {
     id?: true
     atcoderId?: true
+    ratingColor?: true
     contestId?: true
   }
 
   export type UserCountAggregateInputType = {
     id?: true
     atcoderId?: true
+    ratingColor?: true
     contestId?: true
     _all?: true
   }
@@ -3690,6 +3696,7 @@ export namespace Prisma {
   export type UserGroupByOutputType = {
     id: string
     atcoderId: string
+    ratingColor: string | null
     contestId: string
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
@@ -3713,6 +3720,7 @@ export namespace Prisma {
   export type UserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     atcoderId?: boolean
+    ratingColor?: boolean
     contestId?: boolean
     contest?: boolean | ContestDefaultArgs<ExtArgs>
     submissions?: boolean | User$submissionsArgs<ExtArgs>
@@ -3722,6 +3730,7 @@ export namespace Prisma {
   export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     atcoderId?: boolean
+    ratingColor?: boolean
     contestId?: boolean
     contest?: boolean | ContestDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
@@ -3729,6 +3738,7 @@ export namespace Prisma {
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     atcoderId?: boolean
+    ratingColor?: boolean
     contestId?: boolean
     contest?: boolean | ContestDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
@@ -3736,10 +3746,11 @@ export namespace Prisma {
   export type UserSelectScalar = {
     id?: boolean
     atcoderId?: boolean
+    ratingColor?: boolean
     contestId?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "atcoderId" | "contestId", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "atcoderId" | "ratingColor" | "contestId", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     contest?: boolean | ContestDefaultArgs<ExtArgs>
     submissions?: boolean | User$submissionsArgs<ExtArgs>
@@ -3761,6 +3772,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       atcoderId: string
+      ratingColor: string | null
       contestId: string
     }, ExtArgs["result"]["user"]>
     composites: {}
@@ -4189,6 +4201,7 @@ export namespace Prisma {
   interface UserFieldRefs {
     readonly id: FieldRef<"User", 'String'>
     readonly atcoderId: FieldRef<"User", 'String'>
+    readonly ratingColor: FieldRef<"User", 'String'>
     readonly contestId: FieldRef<"User", 'String'>
   }
     
@@ -5750,6 +5763,7 @@ export namespace Prisma {
   export const UserScalarFieldEnum: {
     id: 'id',
     atcoderId: 'atcoderId',
+    ratingColor: 'ratingColor',
     contestId: 'contestId'
   };
 
@@ -6004,6 +6018,7 @@ export namespace Prisma {
     NOT?: UserWhereInput | UserWhereInput[]
     id?: StringFilter<"User"> | string
     atcoderId?: StringFilter<"User"> | string
+    ratingColor?: StringNullableFilter<"User"> | string | null
     contestId?: StringFilter<"User"> | string
     contest?: XOR<ContestScalarRelationFilter, ContestWhereInput>
     submissions?: SubmissionListRelationFilter
@@ -6012,6 +6027,7 @@ export namespace Prisma {
   export type UserOrderByWithRelationInput = {
     id?: SortOrder
     atcoderId?: SortOrder
+    ratingColor?: SortOrderInput | SortOrder
     contestId?: SortOrder
     contest?: ContestOrderByWithRelationInput
     submissions?: SubmissionOrderByRelationAggregateInput
@@ -6024,6 +6040,7 @@ export namespace Prisma {
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     atcoderId?: StringFilter<"User"> | string
+    ratingColor?: StringNullableFilter<"User"> | string | null
     contestId?: StringFilter<"User"> | string
     contest?: XOR<ContestScalarRelationFilter, ContestWhereInput>
     submissions?: SubmissionListRelationFilter
@@ -6032,6 +6049,7 @@ export namespace Prisma {
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
     atcoderId?: SortOrder
+    ratingColor?: SortOrderInput | SortOrder
     contestId?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
@@ -6044,6 +6062,7 @@ export namespace Prisma {
     NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"User"> | string
     atcoderId?: StringWithAggregatesFilter<"User"> | string
+    ratingColor?: StringNullableWithAggregatesFilter<"User"> | string | null
     contestId?: StringWithAggregatesFilter<"User"> | string
   }
 
@@ -6264,6 +6283,7 @@ export namespace Prisma {
   export type UserCreateInput = {
     id?: string
     atcoderId: string
+    ratingColor?: string | null
     contest: ContestCreateNestedOneWithoutUsersInput
     submissions?: SubmissionCreateNestedManyWithoutUserInput
   }
@@ -6271,6 +6291,7 @@ export namespace Prisma {
   export type UserUncheckedCreateInput = {
     id?: string
     atcoderId: string
+    ratingColor?: string | null
     contestId: string
     submissions?: SubmissionUncheckedCreateNestedManyWithoutUserInput
   }
@@ -6278,6 +6299,7 @@ export namespace Prisma {
   export type UserUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     atcoderId?: StringFieldUpdateOperationsInput | string
+    ratingColor?: NullableStringFieldUpdateOperationsInput | string | null
     contest?: ContestUpdateOneRequiredWithoutUsersNestedInput
     submissions?: SubmissionUpdateManyWithoutUserNestedInput
   }
@@ -6285,6 +6307,7 @@ export namespace Prisma {
   export type UserUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     atcoderId?: StringFieldUpdateOperationsInput | string
+    ratingColor?: NullableStringFieldUpdateOperationsInput | string | null
     contestId?: StringFieldUpdateOperationsInput | string
     submissions?: SubmissionUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -6292,17 +6315,20 @@ export namespace Prisma {
   export type UserCreateManyInput = {
     id?: string
     atcoderId: string
+    ratingColor?: string | null
     contestId: string
   }
 
   export type UserUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     atcoderId?: StringFieldUpdateOperationsInput | string
+    ratingColor?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UserUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     atcoderId?: StringFieldUpdateOperationsInput | string
+    ratingColor?: NullableStringFieldUpdateOperationsInput | string | null
     contestId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -6605,6 +6631,21 @@ export namespace Prisma {
     orderIndex?: SortOrder
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type UserContestIdAtcoderIdCompoundUniqueInput = {
     contestId: string
     atcoderId: string
@@ -6613,19 +6654,40 @@ export namespace Prisma {
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     atcoderId?: SortOrder
+    ratingColor?: SortOrder
     contestId?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
     id?: SortOrder
     atcoderId?: SortOrder
+    ratingColor?: SortOrder
     contestId?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
     id?: SortOrder
     atcoderId?: SortOrder
+    ratingColor?: SortOrder
     contestId?: SortOrder
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type UserScalarRelationFilter = {
@@ -6845,6 +6907,10 @@ export namespace Prisma {
     connect?: SubmissionWhereUniqueInput | SubmissionWhereUniqueInput[]
   }
 
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
   export type ContestUpdateOneRequiredWithoutUsersNestedInput = {
     create?: XOR<ContestCreateWithoutUsersInput, ContestUncheckedCreateWithoutUsersInput>
     connectOrCreate?: ContestCreateOrConnectWithoutUsersInput
@@ -7039,6 +7105,37 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
   export type ProblemCreateWithoutContestInput = {
     id?: string
     name: string
@@ -7072,12 +7169,14 @@ export namespace Prisma {
   export type UserCreateWithoutContestInput = {
     id?: string
     atcoderId: string
+    ratingColor?: string | null
     submissions?: SubmissionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutContestInput = {
     id?: string
     atcoderId: string
+    ratingColor?: string | null
     submissions?: SubmissionUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -7142,6 +7241,7 @@ export namespace Prisma {
     NOT?: UserScalarWhereInput | UserScalarWhereInput[]
     id?: StringFilter<"User"> | string
     atcoderId?: StringFilter<"User"> | string
+    ratingColor?: StringNullableFilter<"User"> | string | null
     contestId?: StringFilter<"User"> | string
   }
 
@@ -7364,12 +7464,14 @@ export namespace Prisma {
   export type UserCreateWithoutSubmissionsInput = {
     id?: string
     atcoderId: string
+    ratingColor?: string | null
     contest: ContestCreateNestedOneWithoutUsersInput
   }
 
   export type UserUncheckedCreateWithoutSubmissionsInput = {
     id?: string
     atcoderId: string
+    ratingColor?: string | null
     contestId: string
   }
 
@@ -7417,12 +7519,14 @@ export namespace Prisma {
   export type UserUpdateWithoutSubmissionsInput = {
     id?: StringFieldUpdateOperationsInput | string
     atcoderId?: StringFieldUpdateOperationsInput | string
+    ratingColor?: NullableStringFieldUpdateOperationsInput | string | null
     contest?: ContestUpdateOneRequiredWithoutUsersNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSubmissionsInput = {
     id?: StringFieldUpdateOperationsInput | string
     atcoderId?: StringFieldUpdateOperationsInput | string
+    ratingColor?: NullableStringFieldUpdateOperationsInput | string | null
     contestId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -7469,6 +7573,7 @@ export namespace Prisma {
   export type UserCreateManyContestInput = {
     id?: string
     atcoderId: string
+    ratingColor?: string | null
   }
 
   export type ProblemUpdateWithoutContestInput = {
@@ -7503,18 +7608,21 @@ export namespace Prisma {
   export type UserUpdateWithoutContestInput = {
     id?: StringFieldUpdateOperationsInput | string
     atcoderId?: StringFieldUpdateOperationsInput | string
+    ratingColor?: NullableStringFieldUpdateOperationsInput | string | null
     submissions?: SubmissionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutContestInput = {
     id?: StringFieldUpdateOperationsInput | string
     atcoderId?: StringFieldUpdateOperationsInput | string
+    ratingColor?: NullableStringFieldUpdateOperationsInput | string | null
     submissions?: SubmissionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateManyWithoutContestInput = {
     id?: StringFieldUpdateOperationsInput | string
     atcoderId?: StringFieldUpdateOperationsInput | string
+    ratingColor?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type SubmissionCreateManyProblemInput = {

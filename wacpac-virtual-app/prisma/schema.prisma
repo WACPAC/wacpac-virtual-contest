@@ -50,6 +50,7 @@ model Problem {
 model User {
   id         String @id @default(uuid())
   atcoderId  String @map("atcoder_id")
+  ratingColor String? @map("rating_color") // user-yellow, user-blue, etc.
 
   contestId String @map("contest_id")
   contest   Contest @relation(fields: [contestId], references: [id], onDelete: Cascade)

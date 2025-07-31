@@ -143,6 +143,7 @@ exports.Prisma.ProblemScalarFieldEnum = {
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   atcoderId: 'atcoderId',
+  ratingColor: 'ratingColor',
   contestId: 'contestId'
 };
 
