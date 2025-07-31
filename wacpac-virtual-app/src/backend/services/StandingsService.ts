@@ -89,13 +89,16 @@ export class StandingsService {
           totalPenalty += penalty;
           // Calculate AC time in minutes from contest start
           const acceptedTimeMinutes = acceptedAt!.getTime() - contest.startTime!.getTime();
-          totalTime = Math.max(totalTime, acceptedTimeMinutes + (penalty * 5 * 60 * 1000));
+          totalTime = Math.max(totalTime, acceptedTimeMinutes);
         }
       }
 
       StandingsMap.set(user.id, {
         rank: 0, // Will be calculated later
-        user,
+        user: {
+          ...user,
+          ratingColor: user.ratingColor || 'black'
+        },
         totalScore,
         penalty: totalPenalty,
         totalTime,
@@ -140,7 +143,6 @@ export class StandingsService {
 
     for (const entry of standings) {
       const time = (entry.totalTime * 1000 + entry.penalty * 5 * 60 * 1000 - (contest?.startTime ? Math.floor(new Date(contest.startTime).getTime() / 1000) : 0)) / 1000;
-      console.log(entry.totalTime * 1000, entry.penalty * 5 * 60 * 1000, contest?.startTime ? Math.floor(new Date(contest.startTime).getTime() / 1000) : 0)
       const row = [
         entry.rank.toString(),
         entry.user.atcoderId,

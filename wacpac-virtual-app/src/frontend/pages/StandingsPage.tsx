@@ -48,9 +48,9 @@ export const StandingsPageComponent: React.FC<StandingsPageComponentProps> = ({
 
   const handleUpdate = async () => {
     if (contest?.status === 'after') {
-      return; // Do nothing if contest is finished
+      const confirm = window.confirm('コンテストが終了していますが、本当に更新しますか？');
+      if (!confirm) return;
     }
-    
     try {
       await updateStandings();
     } catch (error) {
@@ -75,13 +75,11 @@ export const StandingsPageComponent: React.FC<StandingsPageComponentProps> = ({
       case 'running':
         return '3分毎に自動更新';
       case 'after':
-        return 'コンテスト終了のため自動更新は停止されています';
+        return 'コンテスト終了後のため、自動更新は停止されています';
       default:
         return null;
     }
   };
-
-  const isContestFinished = contest?.status === 'after';
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -100,7 +98,7 @@ export const StandingsPageComponent: React.FC<StandingsPageComponentProps> = ({
   useEffect(() => {
       const endTime = contest?.startTime ? new Date(contest.startTime).getTime() + contest?.durationMinutes * 60 * 1000 : undefined;    const interval = setInterval(() => {
       const currentTime = new Date().getTime();
-      const toEndTime = endTime ? endTime - currentTime : undefined;
+      const toEndTime = endTime ? Math.max(0, endTime - currentTime) : undefined;
       if (toEndTime) {
         const hours = Math.floor(toEndTime / (1000 * 60 * 60));
         const minutes = Math.floor((toEndTime % (1000 * 60 * 60)) / (1000 * 60));
@@ -178,7 +176,7 @@ export const StandingsPageComponent: React.FC<StandingsPageComponentProps> = ({
               <Button
                 startIcon={<Refresh />}
                 onClick={handleUpdate}
-                disabled={updating || isContestFinished}
+                disabled={updating}
                 variant="outlined"
               >
                 手動更新
