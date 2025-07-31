@@ -96,10 +96,9 @@ export const StandingsPageComponent: React.FC<StandingsPageComponentProps> = ({
     }
   };
 
-  const endTime = contest?.startTime ? new Date(contest.startTime).getTime() + contest?.durationMinutes * 60 * 1000 : undefined;
   const [remainTime, setRemainTime] = useState<string | undefined>(undefined);
   useEffect(() => {
-    const interval = setInterval(() => {
+      const endTime = contest?.startTime ? new Date(contest.startTime).getTime() + contest?.durationMinutes * 60 * 1000 : undefined;    const interval = setInterval(() => {
       const currentTime = new Date().getTime();
       const toEndTime = endTime ? endTime - currentTime : undefined;
       if (toEndTime) {
@@ -110,7 +109,7 @@ export const StandingsPageComponent: React.FC<StandingsPageComponentProps> = ({
       }
     }, 1000);
     return () => clearInterval(interval);
-  }, []);
+  }, [contest]);
 
   return (
     <Layout title="WACPAC Virtual Contest - 順位表">
