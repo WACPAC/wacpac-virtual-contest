@@ -1,0 +1,12 @@
+Dockerfile
+.dockerignore
+npm-debug.log
+README.md
+.env
+.env.local
+.env.production.local
+.env.test.local
+.git
+.gitignore
+.next
+.vercel 

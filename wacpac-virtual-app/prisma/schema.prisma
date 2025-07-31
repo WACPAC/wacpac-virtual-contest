@@ -1,0 +1,76 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Contest {
+  id             String   @id @default(uuid())
+  name           String   @unique
+  status         String   @default("before") // "before", "running", "after"
+  startTime      DateTime? @map("start_time")
+  durationMinutes Int     @default(100) @map("duration_minutes")
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+
+  problems Problem[]
+  users    User[]
+
+  @@map("contests")
+}
+
+model Problem {
+  id           String @id @default(uuid())
+  name         String
+  problemUrl   String @map("problem_url")
+  submissionUrl String @map("submission_url")
+  points       Int    @default(100)
+  orderIndex   Int    @map("order_index")
+
+  contestId String @map("contest_id")
+  contest   Contest @relation(fields: [contestId], references: [id], onDelete: Cascade)
+
+  submissions Submission[]
+
+  @@unique([contestId, problemUrl])
+  @@unique([contestId, orderIndex])
+  @@map("problems")
+}
+
+model User {
+  id         String @id @default(uuid())
+  atcoderId  String @map("atcoder_id")
+
+  contestId String @map("contest_id")
+  contest   Contest @relation(fields: [contestId], references: [id], onDelete: Cascade)
+
+  submissions Submission[]
+
+  @@unique([contestId, atcoderId])
+  @@map("users")
+}
+
+model Submission {
+  id           String   @id @default(uuid())
+  submissionId String   @unique @map("submission_id") // AtCoder's submission ID
+  status       String   // AC, WA, TLE, RE, CE, etc.
+  submittedAt  DateTime @map("submitted_at")
+
+  userId    String @map("user_id")
+  user      User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  problemId String @map("problem_id")
+  problem   Problem @relation(fields: [problemId], references: [id], onDelete: Cascade)
+
+  @@map("submissions")
+}
