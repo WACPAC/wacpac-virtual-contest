@@ -11,15 +11,18 @@ AtCoderバーチャルコンテスト順位表システムです。AtCoderの問
 リポジトリのクローン後、以下の操作を行うとサイトが立ち上がります。
 
 ### 必要コマンド全部をまとめたもの
-- 以下の一連のコマンドを実行すれば、環境が立ち上がるはずですが、例えばnpmやdocker等が入っていない場合にエラーが発生します。エラーが発生した時には適宜、以下の1-5の手順を見てください。
+- 以下の一連のコマンド(または、`cd wacpac-virtual-app && ./setup.sh`)を実行すれば、環境が立ち上がるはずですが、例えばnpmやdocker等が入っていない場合にエラーが発生します。エラーが発生した時には適宜、以下の1-5の手順を見てください。
 
 ```bash
 cd wacpac-virtual-app
 npm ci
 docker-compose up -d db
-npx prisma migrate dev
+npx prisma db push
 npm run dev
 ```
+
+### 0. setup.shが動かない場合
+実行権限が設定されていない場合、chmod +x setup.sh等で権限の付与が必要です。
 
 ### 1. 依存関係のクリーンインストール
 ```bash
@@ -82,10 +85,9 @@ newgrp docker
 
 </details>
 
-### 4. データベースのマイグレーション
+### 4. データベース設定
 ```bash
-# Prismaマイグレーション実行
-npx prisma migrate dev
+npx prisma db push
 ```
 
 ### 5. アプリケーションの起動
