@@ -14,4 +14,4 @@ export const userlist: string[] = [
   'TORiPO4',
   'KUEN',
   'glagla',
-]
+];
