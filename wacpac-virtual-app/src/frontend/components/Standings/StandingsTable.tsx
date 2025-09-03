@@ -40,17 +40,17 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, probl
     return seconds >= 0 ? formatTime(seconds) : null;
   };
 
-  const renderProblemCell = (entry: StandingsEntry, problem: Problem) => {
+  const renderProblemCell = (entry: StandingsEntry, problem: Problem, key: string) => {
     const result = getProblemResult(entry, problem.id);
     
     if (!result || result.attempts === 0) {
-      return <TableCell align="center">-</TableCell>;
+      return <TableCell key={key} align="center">-</TableCell>;
     }
 
     if (result.score > 0) {
       // AC case
       return (
-        <TableCell align="center">
+        <TableCell key={key} align="center">
           <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <Typography variant="body2" sx={{ fontSize: '1.1rem', fontWeight: 'bold', color: 'success.main' }}>
               {result.score}
@@ -73,7 +73,7 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, probl
     } else {
       // Non-AC case
       return (
-        <TableCell align="center">
+        <TableCell key={key} align="center">
           <Typography variant="body2" sx={{ color: 'error.main' }}>
             ({result.attempts})
           </Typography>
@@ -156,7 +156,7 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, probl
                   {formatTime(Math.floor((entry.totalTime + entry.penalty * 5 * 60 * 1000) / 1000))}
                 </Typography>
               </TableCell>
-              {problems.map((problem) => renderProblemCell(entry, problem))}
+              {problems.map((problem) => renderProblemCell(entry, problem, `${entry.user.id}-${problem.id}`))}
             </TableRow>
           ))}
         </TableBody>
