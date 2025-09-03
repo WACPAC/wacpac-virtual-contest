@@ -98,4 +98,33 @@ export const getTimeInputExamples = (): string[] => [
   '180（3時間）',
   '240（4時間）',
   '300（5時間）'
-]; 
+];
+
+/**
+ * 現在時刻から直近の5の倍数分に調整した時刻を取得する
+ * @param currentTime 現在時刻（省略時は現在時刻を使用）
+ * @returns 直近の5の倍数分に調整された時刻
+ */
+export const getNextFiveMinuteInterval = (currentTime?: Date): Date => {
+  const now = currentTime || new Date();
+  const minutes = now.getMinutes() + 1;
+  
+  // 現在の分を5の倍数に切り上げ
+  let nextFiveMinutes = Math.ceil(minutes / 5) * 5;
+  let adjustedTime = new Date(now);
+
+  // もし60分を超えた場合、次の時間に繰り上げ
+  if (nextFiveMinutes >= 60) {
+    nextFiveMinutes = 0;
+    adjustedTime.setHours(adjustedTime.getHours() + 1);
+  }
+  
+  // 新しい時刻を作成
+  adjustedTime.setMinutes(nextFiveMinutes);
+  adjustedTime.setSeconds(0);
+  adjustedTime.setMilliseconds(0);
+  
+  
+  
+  return adjustedTime;
+}; 

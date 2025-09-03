@@ -40,7 +40,7 @@ export const userAPI = {
 
 // Standings APIs
 export const StandingsAPI = {
-  get: (contestId: string) => apiClient.get<StandingsEntry[]>(`/contests/${contestId}/standings`),
+  get: (contestId: string) => apiClient.get<{ standings: StandingsEntry[], firstACMap: Record<string, string> }>(`/contests/${contestId}/standings`),
   update: (contestId: string) => apiClient.post(`/contests/${contestId}/standings/update`),
   exportCSV: (contestId: string) => {
     // Create a link and trigger download

@@ -2,7 +2,7 @@ import { prisma } from '../utils/prisma';
 import { StandingsEntry, ProblemResult } from '../../frontend/types';
 
 export class StandingsService {
-  static async calculateStandings(contestId: string): Promise<StandingsEntry[]> {
+  static async calculateStandings(contestId: string): Promise<{ standings: StandingsEntry[], firstACMap: { [problemId: string]: string } }> {
     // Get contest with problems and users
     const contest = await prisma.contest.findUnique({
       where: { id: contestId },
@@ -39,9 +39,19 @@ export class StandingsService {
         submittedAt: 'asc'
       }
     });
+    // sort in ascending order by submittedAt
+    submissions.sort((a, b) => a.submittedAt.getTime() - b.submittedAt.getTime());
 
     // Calculate standings for each user
     const StandingsMap = new Map<string, StandingsEntry>();
+
+    // Calculate First AC
+    const firstACMap: { [problemId: string]: string } = {};
+    for (const submission of submissions) {
+      if (submission.status === 'AC' && !firstACMap[submission.problemId]) {
+        firstACMap[submission.problemId] = submission.userId;
+      }
+    }
 
     for (const user of contest.users) {
       const userSubmissions = submissions.filter(s => s.userId === user.id);
@@ -129,7 +139,10 @@ export class StandingsService {
       standings[i].rank = currentRank;
     }
 
-    return standings;
+    return {
+      standings,
+      firstACMap
+    };
   }
 
   static generateCSV(standings: StandingsEntry[], problems: { id: string }[], contest: { startTime?: Date | null }): string {

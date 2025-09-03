@@ -8,9 +8,9 @@ export async function GET(
   try {
     const { id: contestId } = await params;
 
-    const standings = await StandingsService.calculateStandings(contestId);
+    const { standings, firstACMap } = await StandingsService.calculateStandings(contestId);
 
-    return NextResponse.json(standings);
+    return NextResponse.json({ standings, firstACMap });
   } catch (error) {
     console.error('Failed to fetch standings:', error);
     return NextResponse.json(

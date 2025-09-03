@@ -5,6 +5,7 @@ import axios from 'axios';
 
 export const useStandings = (contestId: string) => {
   const [standings, setStandings] = useState<StandingsEntry[]>([]);
+  const [firstACMap, setFirstACMap] = useState<{ [problemId: string]: string }>({});
   const [loading, setLoading] = useState(true);
   const [updating, setUpdating] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -15,7 +16,11 @@ export const useStandings = (contestId: string) => {
     try {
       setLoading(true);
       const response = await StandingsAPI.get(contestId);
-      setStandings(response.data);
+      setStandings(response.data.standings);
+
+      // Set firstACMap directly as object
+      setFirstACMap(response.data.firstACMap || {});
+      
       setError(null);
     } catch (err) {
       setError('順位表の取得に失敗しました');
@@ -151,6 +156,7 @@ export const useStandings = (contestId: string) => {
 
   return {
     standings,
+    firstACMap,
     contest,
     loading,
     updating,

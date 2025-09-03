@@ -16,6 +16,7 @@ import { format } from 'date-fns';
 import { ja } from 'date-fns/locale';
 import { contestAPI } from '../../api/client';
 import { formatMinutesToJapanese } from '../../utils/timeUtils';
+import { getStatusChip } from '../../utils/contestUtils';
 
 interface ContestCardProps {
   contest: Contest;
@@ -33,19 +34,6 @@ export const ContestCard: React.FC<ContestCardProps> = ({
   onContestUpdate,
 }) => {
   const [isStarting, setIsStarting] = useState(false);
-
-  const getStatusChip = (status: string) => {
-    switch (status) {
-      case 'before':
-        return <Chip label="開始前" color="default" size="small" />;
-      case 'running':
-        return <Chip label="実行中" color="primary" size="small" />;
-      case 'after':
-        return <Chip label="終了" color="secondary" size="small" />;
-      default:
-        return <Chip label="不明" color="error" size="small" />;
-    }
-  };
 
   const formatDuration = (minutes: number) => {
     return formatMinutesToJapanese(minutes);
@@ -70,7 +58,7 @@ export const ContestCard: React.FC<ContestCardProps> = ({
           <Typography variant="h6" component="h2" sx={{ fontWeight: 'bold', fontSize: '1.25rem' }}>
             {contest.name}
           </Typography>
-          {getStatusChip(contest.status)}
+          {getStatusChip(contest.status, contest.startTime)}
         </Box>
 
         <Box sx={{ mb: 2 }}>

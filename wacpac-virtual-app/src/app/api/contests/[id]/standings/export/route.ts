@@ -10,7 +10,7 @@ export async function GET(
     const { id: contestId } = await params;
 
     // Get standings
-    const standings = await StandingsService.calculateStandings(contestId);
+    const { standings } = await StandingsService.calculateStandings(contestId);
     const contest = await prisma.contest.findUnique({
       where: { id: contestId },
     });

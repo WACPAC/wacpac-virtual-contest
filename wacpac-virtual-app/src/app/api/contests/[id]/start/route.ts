@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '../../../../../backend/utils/prisma';
+import { getNextFiveMinuteInterval } from '../../../../../frontend/utils/timeUtils';
 
 export async function POST(
   request: NextRequest,
@@ -27,12 +28,13 @@ export async function POST(
       );
     }
 
-    // Start the contest
+    // Start the contest with next 5-minute interval
+    const startTime = getNextFiveMinuteInterval();
     const updatedContest = await prisma.contest.update({
       where: { id: contestId },
       data: {
         status: 'running',
-        startTime: new Date()
+        startTime: startTime
       }
     });
 
