@@ -1,7 +1,7 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { prisma } from '../../../../backend/utils/prisma';
 
-export async function POST(request: NextRequest) {
+export async function POST() {
   try {
     const now = new Date();
     
@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
       message: `Contest statuses updated. ${updatedCount} contests ended.`,
       updatedCount 
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Failed to update contest statuses:', error);
     return NextResponse.json(
       { error: 'ステータス更新に失敗しました' },

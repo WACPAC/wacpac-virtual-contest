@@ -5,7 +5,6 @@ import {
   List,
   ListItem,
   ListItemText,
-  ListItemSecondaryAction,
   IconButton,
   Button,
   Dialog,
@@ -122,6 +121,15 @@ export const ProblemList: React.FC<ProblemListProps> = ({ contestId }) => {
                 borderRadius: 1,
                 mb: 1,
               }}
+              secondaryAction={
+                <IconButton
+                  edge="end"
+                  onClick={() => handleDeleteProblem(problem.id)}
+                  color="error"
+                >
+                  <Delete />
+                </IconButton>
+              }
             >
               <DragIndicator sx={{ mr: 1, color: 'text.secondary' }} />
               <ListItemText
@@ -153,16 +161,11 @@ export const ProblemList: React.FC<ProblemListProps> = ({ contestId }) => {
                     </Link>
                   </Box>
                 }
+                slotProps={{
+                  primary: { component: 'div' },
+                  secondary: { component: 'div' }
+                }}
               />
-              <ListItemSecondaryAction>
-                <IconButton
-                  edge="end"
-                  onClick={() => handleDeleteProblem(problem.id)}
-                  color="error"
-                >
-                  <Delete />
-                </IconButton>
-              </ListItemSecondaryAction>
             </ListItem>
           ))}
         </List>

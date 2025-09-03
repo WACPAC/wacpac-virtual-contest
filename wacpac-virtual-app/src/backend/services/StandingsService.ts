@@ -1,9 +1,8 @@
 import { prisma } from '../utils/prisma';
-import { StandingsEntry, ProblemResult, Contest } from '../../frontend/types';
-import { CLIENT_STATIC_FILES_RUNTIME_AMP } from 'next/dist/shared/lib/constants';
+import { StandingsEntry, ProblemResult } from '../../frontend/types';
 
 export class StandingsService {
-  static async calculateStandings(contestId: string): Promise<StandingsEntry[]> {
+  static async calculateStandings(contestId: string): Promise<{ standings: StandingsEntry[], firstACMap: { [problemId: string]: string } }> {
     // Get contest with problems and users
     const contest = await prisma.contest.findUnique({
       where: { id: contestId },
@@ -40,9 +39,19 @@ export class StandingsService {
         submittedAt: 'asc'
       }
     });
+    // sort in ascending order by submittedAt
+    submissions.sort((a, b) => a.submittedAt.getTime() - b.submittedAt.getTime());
 
     // Calculate standings for each user
     const StandingsMap = new Map<string, StandingsEntry>();
+
+    // Calculate First AC
+    const firstACMap: { [problemId: string]: string } = {};
+    for (const submission of submissions) {
+      if (submission.status === 'AC' && !firstACMap[submission.problemId]) {
+        firstACMap[submission.problemId] = submission.userId;
+      }
+    }
 
     for (const user of contest.users) {
       const userSubmissions = submissions.filter(s => s.userId === user.id);
@@ -58,7 +67,7 @@ export class StandingsService {
 
         let accepted = false;
         let acceptedAt: Date | undefined;
-        let attempts = problemSubmissions.length;
+        const attempts = problemSubmissions.length;
         let penalty = 0;
 
         // Find first AC submission
@@ -130,10 +139,13 @@ export class StandingsService {
       standings[i].rank = currentRank;
     }
 
-    return standings;
+    return {
+      standings,
+      firstACMap
+    };
   }
 
-  static generateCSV(standings: StandingsEntry[], problems: any[], contest: any): string {
+  static generateCSV(standings: StandingsEntry[], problems: { id: string }[], contest: { startTime?: Date | null }): string {
     const headers = ['順位', 'ユーザー名', '得点', '時間'];
     problems.forEach((_, index) => {
       headers.push(String.fromCharCode(65 + index)); // A, B, C, ...

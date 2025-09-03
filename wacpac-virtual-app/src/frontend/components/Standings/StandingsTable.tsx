@@ -18,9 +18,10 @@ interface StandingsTableProps {
   standings: StandingsEntry[];
   problems: Problem[];
   contestStartTime?: Date; // コンテスト開始時刻
+  firstACMap: { [problemId: string]: string };
 }
 
-export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, problems, contestStartTime }) => {
+export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, problems, contestStartTime, firstACMap }) => {
   const getProblemLabel = (index: number) => {
     return String.fromCharCode(65 + index); // A, B, C, ...
   };
@@ -40,20 +41,24 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, probl
     return seconds >= 0 ? formatTime(seconds) : null;
   };
 
-  const renderProblemCell = (entry: StandingsEntry, problem: Problem) => {
+  const renderProblemCell = (entry: StandingsEntry, problem: Problem, key: string) => {
     const result = getProblemResult(entry, problem.id);
     
+    // no eligible submission
     if (!result || result.attempts === 0) {
-      return <TableCell align="center">-</TableCell>;
+      return <TableCell key={key} align="center">-</TableCell>;
     }
 
     if (result.score > 0) {
       // AC case
       return (
-        <TableCell align="center">
+        <TableCell key={key} align="center">
           <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <Typography variant="body2" sx={{ fontSize: '1.1rem', fontWeight: 'bold', color: 'success.main' }}>
+            <Typography variant="body2" sx={{ fontSize: '1.1rem', color: firstACMap[problem.id] === entry.user.id ? 'success.main' : 'success.light' }}>
               {result.score}
+              {firstACMap[problem.id] === entry.user.id && (
+                <span style={{ color: '#fbc02d', marginLeft: 4 }}>★</span>
+              )}
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
               {result.acceptedAt && contestStartTime && (
@@ -70,16 +75,15 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, probl
           </Box>
         </TableCell>
       );
-    } else {
-      // Non-AC case
-      return (
-        <TableCell align="center">
-          <Typography variant="body2" sx={{ color: 'error.main' }}>
-            ({result.attempts})
-          </Typography>
-        </TableCell>
-      );
     }
+    // Non-AC case
+    return (
+      <TableCell key={key} align="center">
+        <Typography variant="body2" sx={{ color: 'error.main' }}>
+          ({result.attempts})
+        </Typography>
+      </TableCell>
+    );
   };
 
   return (
@@ -156,7 +160,7 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, probl
                   {formatTime(Math.floor((entry.totalTime + entry.penalty * 5 * 60 * 1000) / 1000))}
                 </Typography>
               </TableCell>
-              {problems.map((problem) => renderProblemCell(entry, problem))}
+              {problems.map((problem) => renderProblemCell(entry, problem, `${entry.user.id}-${problem.id}`))}
             </TableRow>
           ))}
         </TableBody>

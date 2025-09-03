@@ -30,13 +30,11 @@ export const ContestManagePage: React.FC<ContestManagePageProps> = ({
   const [contestLoading, setContestLoading] = useState(true);
 
   const {
-    problems,
     loading: problemsLoading,
     error: problemsError,
   } = useProblems(contestId);
 
   const {
-    users,
     loading: usersLoading,
     error: usersError,
   } = useUsers(contestId);

@@ -15,6 +15,7 @@ import { Layout } from '../components/Layout/Layout';
 import { StandingsTable } from '../components/Standings/StandingsTable';
 import { useStandings } from '../hooks/useStandings';
 import { useProblems } from '../hooks/useProblems';
+import { getStatusChip, getStatusLabel, getStatusColor } from '../utils/contestUtils';
 
 interface StandingsPageComponentProps {
   contestId: string;
@@ -27,6 +28,7 @@ export const StandingsPageComponent: React.FC<StandingsPageComponentProps> = ({
 }) => {
   const {
     standings,
+    firstACMap,
     contest,
     loading: StandingsLoading,
     updating,
@@ -53,7 +55,7 @@ export const StandingsPageComponent: React.FC<StandingsPageComponentProps> = ({
     }
     try {
       await updateStandings();
-    } catch (error) {
+    } catch {
       // Error handling is done in the hook
     }
   };
@@ -61,7 +63,7 @@ export const StandingsPageComponent: React.FC<StandingsPageComponentProps> = ({
   const handleExport = async () => {
     try {
       await exportToCSV();
-    } catch (error) {
+    } catch {
       // Error handling is done in the hook
     }
   };
@@ -81,31 +83,44 @@ export const StandingsPageComponent: React.FC<StandingsPageComponentProps> = ({
     }
   };
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'before':
-        return 'default';
-      case 'running':
-        return 'primary';
-      case 'after':
-        return 'secondary';
-      default:
-        return 'default';
-    }
-  };
-
   const [remainTime, setRemainTime] = useState<string | undefined>(undefined);
+  const [timeLabel, setTimeLabel] = useState<string>('残り時間');
+  
   useEffect(() => {
-      const endTime = contest?.startTime ? new Date(contest.startTime).getTime() + contest?.durationMinutes * 60 * 1000 : undefined;    const interval = setInterval(() => {
+    if (!contest?.startTime) return;
+
+    const interval = setInterval(() => {
       const currentTime = new Date().getTime();
-      const toEndTime = endTime ? Math.max(0, endTime - currentTime) : undefined;
-      if (toEndTime) {
-        const hours = Math.floor(toEndTime / (1000 * 60 * 60));
-        const minutes = Math.floor((toEndTime % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((toEndTime % (1000 * 60)) / 1000);
-        setRemainTime(`${hours}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`);
+      const startTime = new Date(contest.startTime!).getTime();
+      const endTime = startTime + contest.durationMinutes * 60 * 1000;
+
+      let targetTime: number;
+      let label: string;
+
+      if (currentTime < startTime) {
+        // コンテスト開始前：開始までの時間を表示
+        targetTime = startTime;
+        label = '開始まで';
+      } else if (currentTime < endTime) {
+        // コンテスト実行中：終了までの時間を表示
+        targetTime = endTime;
+        label = '残り時間';
+      } else {
+        // コンテスト終了後
+        setRemainTime(undefined);
+        setTimeLabel('残り時間');
+        return;
       }
+
+      const timeDiff = Math.max(0, targetTime - currentTime);
+      const hours = Math.floor(timeDiff / (1000 * 60 * 60));
+      const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+      
+      setRemainTime(`${hours}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`);
+      setTimeLabel(label);
     }, 1000);
+
     return () => clearInterval(interval);
   }, [contest]);
 
@@ -136,16 +151,10 @@ export const StandingsPageComponent: React.FC<StandingsPageComponentProps> = ({
             {`${contestName} - 順位表`}
           </Typography>
           <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1, justifyContent: 'space-between' }}>
-            {contest && (
+            {contest && getStatusChip(contest.status, contest.startTime)}
+            {contest && contest.status === 'running' && remainTime && (
               <Chip
-                label={contest.status === 'before' ? '開始前' : contest.status === 'running' ? '実行中' : '終了'}
-                color={getStatusColor(contest.status) as any}
-                size="small"
-              />
-            )}
-            {contest && contest.status === 'running' && (
-              <Chip
-                label={`残り ${remainTime}`}
+                label={`${timeLabel} ${remainTime}`}
                 sx={{ fontSize: '1.1rem' }}
               />
             )}
@@ -229,6 +238,7 @@ export const StandingsPageComponent: React.FC<StandingsPageComponentProps> = ({
                 standings={standings} 
                 problems={problems} 
                 contestStartTime={contest?.startTime ? new Date(contest.startTime) : undefined}
+                firstACMap={firstACMap}
               />
             </Box>
           )}

@@ -5,6 +5,7 @@ import axios from 'axios';
 
 export const useStandings = (contestId: string) => {
   const [standings, setStandings] = useState<StandingsEntry[]>([]);
+  const [firstACMap, setFirstACMap] = useState<{ [problemId: string]: string }>({});
   const [loading, setLoading] = useState(true);
   const [updating, setUpdating] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -15,7 +16,11 @@ export const useStandings = (contestId: string) => {
     try {
       setLoading(true);
       const response = await StandingsAPI.get(contestId);
-      setStandings(response.data);
+      setStandings(response.data.standings);
+
+      // Set firstACMap directly as object
+      setFirstACMap(response.data.firstACMap || {});
+      
       setError(null);
     } catch (err) {
       setError('順位表の取得に失敗しました');
@@ -62,7 +67,7 @@ export const useStandings = (contestId: string) => {
     }
   }, [contestId, fetchStandings]);
 
-  const updateStandings = async () => {
+  const updateStandings = useCallback(async () => {
     // Check if contest update window has passed (30 minutes after contest end)
     if (contest && contest.status === 'after' && contest.startTime) {
       const contestStartTime = new Date(contest.startTime);
@@ -87,7 +92,7 @@ export const useStandings = (contestId: string) => {
     } finally {
       setUpdating(false);
     }
-  };
+  }, [contest, contestId, fetchStandings]);
 
   const exportToCSV = async () => {
     try {
@@ -147,10 +152,11 @@ export const useStandings = (contestId: string) => {
     }, 3 * 60 * 1000); // 3 minutes
 
     return () => clearInterval(StandingsInterval);
-  }, [contestId, contest?.status]);
+  }, [contestId, contest, updateStandings]);
 
   return {
     standings,
+    firstACMap,
     contest,
     loading,
     updating,

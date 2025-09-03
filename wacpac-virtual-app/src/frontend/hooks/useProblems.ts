@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Problem, CreateProblemRequest } from '../types';
 import { problemAPI } from '../api/client';
 
@@ -7,7 +7,7 @@ export const useProblems = (contestId: string) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchProblems = async () => {
+  const fetchProblems = useCallback(async () => {
     try {
       setLoading(true);
       const response = await problemAPI.getByContest(contestId);
@@ -19,7 +19,7 @@ export const useProblems = (contestId: string) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [contestId]);
 
   const createProblem = async (data: CreateProblemRequest) => {
     try {
@@ -65,7 +65,7 @@ export const useProblems = (contestId: string) => {
     if (contestId) {
       fetchProblems();
     }
-  }, [contestId]);
+  }, [contestId, fetchProblems]);
 
   return {
     problems,

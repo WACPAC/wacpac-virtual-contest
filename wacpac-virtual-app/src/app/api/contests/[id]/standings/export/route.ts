@@ -10,7 +10,7 @@ export async function GET(
     const { id: contestId } = await params;
 
     // Get standings
-    const standings = await StandingsService.calculateStandings(contestId);
+    const { standings } = await StandingsService.calculateStandings(contestId);
     const contest = await prisma.contest.findUnique({
       where: { id: contestId },
     });
@@ -22,7 +22,7 @@ export async function GET(
     });
 
     // Generate CSV
-    const csv = StandingsService.generateCSV(standings, problems, contest);
+    const csv = StandingsService.generateCSV(standings, problems, contest || { startTime: null });
 
     // Return CSV file
     return new NextResponse(csv, {
