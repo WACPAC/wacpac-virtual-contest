@@ -1,6 +1,5 @@
 import { prisma } from '../utils/prisma';
-import { StandingsEntry, ProblemResult, Contest } from '../../frontend/types';
-import { CLIENT_STATIC_FILES_RUNTIME_AMP } from 'next/dist/shared/lib/constants';
+import { StandingsEntry, ProblemResult } from '../../frontend/types';
 
 export class StandingsService {
   static async calculateStandings(contestId: string): Promise<StandingsEntry[]> {
@@ -58,7 +57,7 @@ export class StandingsService {
 
         let accepted = false;
         let acceptedAt: Date | undefined;
-        let attempts = problemSubmissions.length;
+        const attempts = problemSubmissions.length;
         let penalty = 0;
 
         // Find first AC submission
@@ -133,7 +132,7 @@ export class StandingsService {
     return standings;
   }
 
-  static generateCSV(standings: StandingsEntry[], problems: any[], contest: any): string {
+  static generateCSV(standings: StandingsEntry[], problems: { id: string }[], contest: { startTime?: Date | null }): string {
     const headers = ['順位', 'ユーザー名', '得点', '時間'];
     problems.forEach((_, index) => {
       headers.push(String.fromCharCode(65 + index)); // A, B, C, ...

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { User, CreateUserRequest } from '../types';
 import { userAPI } from '../api/client';
 
@@ -7,7 +7,7 @@ export const useUsers = (contestId: string) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchUsers = async () => {
+  const fetchUsers = useCallback(async () => {
     try {
       setLoading(true);
       const response = await userAPI.getByContest(contestId);
@@ -19,7 +19,7 @@ export const useUsers = (contestId: string) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [contestId]);
 
   const createUser = async (data: CreateUserRequest) => {
     try {
@@ -48,7 +48,7 @@ export const useUsers = (contestId: string) => {
     if (contestId) {
       fetchUsers();
     }
-  }, [contestId]);
+  }, [contestId, fetchUsers]);
 
   return {
     users,

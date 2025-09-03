@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { ContestManagePage } from '../../../frontend/pages/ContestManagePage';
+import { use } from 'react';
 
 interface SettingsPageProps {
   params: Promise<{
@@ -9,9 +10,9 @@ interface SettingsPageProps {
   }>;
 }
 
-export default async function SettingsPage({ params }: SettingsPageProps) {
+export default function SettingsPage({ params }: SettingsPageProps) {
   const router = useRouter();
-  const { contestId } = await params;
+  const { contestId } = use(params);
 
   const handleBackToList = () => {
     router.push('/');

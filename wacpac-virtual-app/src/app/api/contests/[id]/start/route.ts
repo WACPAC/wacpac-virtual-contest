@@ -37,7 +37,7 @@ export async function POST(
     });
 
     return NextResponse.json(updatedContest);
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Failed to start contest:', error);
     return NextResponse.json(
       { error: 'コンテストの開始に失敗しました' },

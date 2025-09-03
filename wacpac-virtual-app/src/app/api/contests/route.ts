@@ -44,10 +44,10 @@ export async function POST(request: NextRequest) {
     });
 
     return NextResponse.json(contest, { status: 201 });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Failed to create contest:', error);
     
-    if (error?.code === 'P2002') {
+    if (error && typeof error === 'object' && 'code' in error && error.code === 'P2002') {
       return NextResponse.json(
         { error: '同じ名前のコンテストが既に存在します' },
         { status: 409 }

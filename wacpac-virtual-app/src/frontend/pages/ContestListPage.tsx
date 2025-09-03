@@ -51,8 +51,15 @@ export const ContestListPage: React.FC<ContestListPageProps> = ({
       setIsCreateDialogOpen(false);
       setContestName('');
       setDurationMinutes(100);
-    } catch (err: any) {
-      setCreateError(err.response?.data?.error || 'コンテストの作成に失敗しました');
+    } catch (err: unknown) {
+      setCreateError(
+        (err && typeof err === 'object' && 'response' in err && 
+         err.response && typeof err.response === 'object' && 'data' in err.response &&
+         err.response.data && typeof err.response.data === 'object' && 'error' in err.response.data &&
+         typeof err.response.data.error === 'string') 
+          ? err.response.data.error 
+          : 'コンテストの作成に失敗しました'
+      );
     } finally {
       setIsCreating(false);
     }

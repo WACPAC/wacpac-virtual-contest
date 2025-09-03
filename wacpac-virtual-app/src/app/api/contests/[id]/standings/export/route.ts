@@ -22,7 +22,7 @@ export async function GET(
     });
 
     // Generate CSV
-    const csv = StandingsService.generateCSV(standings, problems, contest);
+    const csv = StandingsService.generateCSV(standings, problems, contest || { startTime: null });
 
     // Return CSV file
     return new NextResponse(csv, {

@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { StandingsPageComponent } from '../../../frontend/pages/StandingsPage';
+import { use } from 'react';
 
 interface StandingsPageProps {
   params: Promise<{
@@ -9,9 +10,9 @@ interface StandingsPageProps {
   }>;
 }
 
-export default async function StandingsPage({ params }: StandingsPageProps) {
+export default function StandingsPage({ params }: StandingsPageProps) {
   const router = useRouter();
-  const { contestId } = await params;
+  const { contestId } = use(params);
 
   const handleBackToList = () => {
     router.push('/');

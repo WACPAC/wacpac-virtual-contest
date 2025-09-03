@@ -53,7 +53,7 @@ export const StandingsPageComponent: React.FC<StandingsPageComponentProps> = ({
     }
     try {
       await updateStandings();
-    } catch (error) {
+    } catch {
       // Error handling is done in the hook
     }
   };
@@ -61,7 +61,7 @@ export const StandingsPageComponent: React.FC<StandingsPageComponentProps> = ({
   const handleExport = async () => {
     try {
       await exportToCSV();
-    } catch (error) {
+    } catch {
       // Error handling is done in the hook
     }
   };
@@ -139,7 +139,7 @@ export const StandingsPageComponent: React.FC<StandingsPageComponentProps> = ({
             {contest && (
               <Chip
                 label={contest.status === 'before' ? '開始前' : contest.status === 'running' ? '実行中' : '終了'}
-                color={getStatusColor(contest.status) as any}
+                color={getStatusColor(contest.status) as 'default' | 'primary' | 'secondary'}
                 size="small"
               />
             )}

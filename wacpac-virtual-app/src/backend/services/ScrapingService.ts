@@ -59,7 +59,7 @@ export class ScrapingService {
         const pageUrl = submissionUrl.replace(/page=\d+/, `page=${currentPage}`);
         
         // Configure axios with AtCoder session cookie if available
-        const config: any = {};
+        const config: { headers?: Record<string, string> } = {};
         if (process.env.REVEL_SESSION) {
           console.log('REVEL_SESSION is set')
           config.headers = {
@@ -113,7 +113,7 @@ export class ScrapingService {
           let submissionTime: Date;
           try {
             submissionTime = new Date(submissionTimeText);
-          } catch (error) {
+          } catch {
             console.error('Failed to parse submission time:', submissionTimeText);
             return;
           }
