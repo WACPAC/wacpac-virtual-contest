@@ -20,7 +20,6 @@ export const useStandings = (contestId: string) => {
 
       // Set firstACMap directly as object
       setFirstACMap(response.data.firstACMap || {});
-      
       setError(null);
     } catch (err) {
       setError('順位表の取得に失敗しました');
@@ -35,7 +34,9 @@ export const useStandings = (contestId: string) => {
       const response = await contestAPI.getAll();
       const foundContest = response.data.find(c => c.id === contestId);
       setContest(foundContest || null);
+      setError(null);
     } catch (err) {
+      setError('コンテスト情報の取得に失敗しました');
       console.error('Failed to fetch contest:', err);
     }
   }, [contestId]);
@@ -45,6 +46,7 @@ export const useStandings = (contestId: string) => {
       await axios.post('/api/contests/update-status');
       await fetchContest(); // Refresh contest data after status update
     } catch (err) {
+      setError('コンテストステータスの更新に失敗しました');
       console.error('Failed to update contest status:', err);
     }
   }, [fetchContest]);
@@ -68,12 +70,19 @@ export const useStandings = (contestId: string) => {
   }, [contestId, fetchStandings]);
 
   const updateStandings = useCallback(async () => {
+    // Check if contest is before start
+    if (contest && contest.status === 'before') {
+      setError('コンテスト開始前のため、順位表の更新はできません');
+      return;
+    }
+
+    const now = new Date();
+
     // Check if contest update window has passed (30 minutes after contest end)
     if (contest && contest.status === 'after' && contest.startTime) {
       const contestStartTime = new Date(contest.startTime);
       const contestEndTime = new Date(contestStartTime.getTime() + contest.durationMinutes * 60 * 1000);
       const updateWindowEnd = new Date(contestEndTime.getTime() + 30 * 60 * 1000); // 30 minutes after end
-      const now = new Date();
       
       if (now > updateWindowEnd) {
         setError('コンテスト終了から30分が経過したため、順位表の更新はできません');
@@ -81,10 +90,17 @@ export const useStandings = (contestId: string) => {
       }
     }
 
+    if (contest && now.getTime() - new Date(contest.updatedAt).getTime() < 3 * 60 * 1000) {
+      setError('順位表の更新は3分ごとに1回までです');
+      return;
+    }
+
     try {
       setUpdating(true);
+      setError(null); // Clear any previous errors
       await StandingsAPI.update(contestId);
       await fetchStandings();
+      // Last updated time is set in fetchStandings
     } catch (err) {
       setError('順位表の更新に失敗しました');
       console.error('Failed to update standings:', err);
@@ -142,17 +158,6 @@ export const useStandings = (contestId: string) => {
       return () => clearTimeout(finalUpdateTimeout);
     }
   }, [contest, performFinalUpdate]);
-
-  // Auto-update standings every 3 minutes only if contest is running
-  useEffect(() => {
-    if (!contestId || !contest || contest.status !== 'running') return;
-
-    const StandingsInterval = setInterval(() => {
-      updateStandings();
-    }, 3 * 60 * 1000); // 3 minutes
-
-    return () => clearInterval(StandingsInterval);
-  }, [contestId, contest, updateStandings]);
 
   return {
     standings,

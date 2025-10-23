@@ -83,6 +83,20 @@ export const StandingsPageComponent: React.FC<StandingsPageComponentProps> = ({
     }
   };
 
+  const formatLastUpdated = () => {
+    if (!contest?.updatedAt) return null;
+    
+    const updatedDate = new Date(contest.updatedAt);
+    return updatedDate.toLocaleString('ja-JP', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
+    });
+  };
+
   const [remainTime, setRemainTime] = useState<string | undefined>(undefined);
   const [timeLabel, setTimeLabel] = useState<string>('残り時間');
   
@@ -172,6 +186,14 @@ export const StandingsPageComponent: React.FC<StandingsPageComponentProps> = ({
                 variant="outlined"
                 color={contest?.status === 'running' ? 'primary' : 'default'}
               />
+              {contest?.updatedAt && (
+                <Chip
+                  label={`最終更新時刻: ${formatLastUpdated()}`}
+                  size="small"
+                  variant="outlined"
+                  color="secondary"
+                />
+              )}
               {updating && (
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                   <CircularProgress size={16} />
