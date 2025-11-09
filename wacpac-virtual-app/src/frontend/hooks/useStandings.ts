@@ -98,6 +98,11 @@ export const useStandings = (contestId: string) => {
     try {
       setUpdating(true);
       setError(null); // Clear any previous errors
+      
+      // Update contest status first
+      await updateContestStatus();
+      
+      // Then update standings
       await StandingsAPI.update(contestId);
       await fetchStandings();
       // Last updated time is set in fetchStandings
@@ -108,7 +113,7 @@ export const useStandings = (contestId: string) => {
     } finally {
       setUpdating(false);
     }
-  }, [contest, contestId, fetchStandings]);
+  }, [contest, contestId, fetchStandings, updateContestStatus]);
 
   const exportToCSV = async () => {
     try {

@@ -15,7 +15,7 @@ import { Layout } from '../components/Layout/Layout';
 import { StandingsTable } from '../components/Standings/StandingsTable';
 import { useStandings } from '../hooks/useStandings';
 import { useProblems } from '../hooks/useProblems';
-import { getStatusChip, getStatusLabel, getStatusColor } from '../utils/contestUtils';
+import { getStatusChip } from '../utils/contestUtils';
 
 interface StandingsPageComponentProps {
   contestId: string;
@@ -77,7 +77,7 @@ export const StandingsPageComponent: React.FC<StandingsPageComponentProps> = ({
       case 'running':
         return '3分毎に自動更新';
       case 'after':
-        return 'コンテスト終了後のため、自動更新は停止されています';
+        return 'コンテスト終了 - 手動更新のみ可能';
       default:
         return null;
     }
@@ -99,6 +99,30 @@ export const StandingsPageComponent: React.FC<StandingsPageComponentProps> = ({
 
   const [remainTime, setRemainTime] = useState<string | undefined>(undefined);
   const [timeLabel, setTimeLabel] = useState<string>('残り時間');
+  
+  // Auto-update standings when 3 minutes have passed since last update
+  useEffect(() => {
+    if (!contest || contest.status !== 'running' || !contest.updatedAt) return;
+
+    const checkAndUpdate = () => {
+      const now = new Date();
+      const lastUpdated = new Date(contest.updatedAt);
+      const timeSinceLastUpdate = now.getTime() - lastUpdated.getTime();
+      
+      // Update if 3 minutes (180000ms) have passed since last update
+      if (timeSinceLastUpdate >= 3 * 60 * 1000) {
+        updateStandings();
+      }
+    };
+
+    // Check immediately
+    checkAndUpdate();
+
+    // Check every minute
+    const checkInterval = setInterval(checkAndUpdate, 60 * 1000);
+
+    return () => clearInterval(checkInterval);
+  }, [contest?.status, contest?.updatedAt]); // Only depend on contest status and updatedAt
   
   useEffect(() => {
     if (!contest?.startTime) return;
