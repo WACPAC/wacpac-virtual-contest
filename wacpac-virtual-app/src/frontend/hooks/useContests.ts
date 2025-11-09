@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Contest, CreateContestRequest } from '../types';
 import { contestAPI } from '../api/client';
+import { getContestStatus } from '../utils/getContestStatus';
 
 export const useContests = () => {
   const [contests, setContests] = useState<Contest[]>([]);
@@ -12,6 +13,9 @@ export const useContests = () => {
       setLoading(true);
       const response = await contestAPI.getAll();
       setContests(response.data);
+      response.data.forEach(contest => {
+        contest.status = getContestStatus(contest);
+      });
       setError(null);
     } catch (err) {
       setError('コンテストの取得に失敗しました');

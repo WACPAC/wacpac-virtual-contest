@@ -39,12 +39,12 @@ export async function POST(
     if (contest.startTime) {
       contestEndTime = new Date(contest.startTime.getTime() + contest.durationMinutes * 60 * 1000);
     }
+    const now = new Date();
 
     // Check if update window has passed (30 minutes after contest end)
     if (contest.status === 'after' && contestEndTime) {
       const updateWindowEnd = new Date(contestEndTime.getTime() + 30 * 60 * 1000); // 30 minutes after end
-      const now = new Date();
-      
+
       if (now > updateWindowEnd) {
         return NextResponse.json(
           { error: 'コンテスト終了から30分が経過したため、順位表の更新はできません' },
@@ -52,6 +52,13 @@ export async function POST(
         );
       }
     }
+
+    // if (now.getTime() - new Date(contest.updatedAt).getTime() < 3 * 60 * 1000) {
+    //   return NextResponse.json(
+    //     { error: '順位表の更新は3分ごとに1回までです' },
+    //     { status: 400 }
+    //   );
+    // }
 
     // Scrape submissions for each problem
     for (const problem of contest.problems) {
@@ -103,6 +110,12 @@ export async function POST(
         console.error(`Failed to scrape submissions for problem ${problem.id}:`, error);
       }
     }
+
+    // Update contest.updatedAt to reflect the last standings update
+    await prisma.contest.update({
+      where: { id: contestId },
+      data: { updatedAt: new Date() }
+    });
 
     return NextResponse.json({ message: '順位表を更新しました' });
   } catch (error) {

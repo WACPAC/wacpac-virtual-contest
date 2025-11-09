@@ -111,7 +111,7 @@ export const getNextFiveMinuteInterval = (currentTime?: Date): Date => {
   
   // 現在の分を5の倍数に切り上げ
   let nextFiveMinutes = Math.ceil(minutes / 5) * 5;
-  let adjustedTime = new Date(now);
+  const adjustedTime = new Date(now);
 
   // もし60分を超えた場合、次の時間に繰り上げ
   if (nextFiveMinutes >= 60) {
@@ -124,7 +124,5 @@ export const getNextFiveMinuteInterval = (currentTime?: Date): Date => {
   adjustedTime.setSeconds(0);
   adjustedTime.setMilliseconds(0);
   
-  
-  
   return adjustedTime;
-}; 
+};

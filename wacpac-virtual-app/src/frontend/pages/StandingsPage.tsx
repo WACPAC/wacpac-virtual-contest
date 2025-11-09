@@ -15,7 +15,7 @@ import { Layout } from '../components/Layout/Layout';
 import { StandingsTable } from '../components/Standings/StandingsTable';
 import { useStandings } from '../hooks/useStandings';
 import { useProblems } from '../hooks/useProblems';
-import { getStatusChip, getStatusLabel, getStatusColor } from '../utils/contestUtils';
+import { getStatusChip } from '../utils/contestUtils';
 
 interface StandingsPageComponentProps {
   contestId: string;
@@ -77,14 +77,52 @@ export const StandingsPageComponent: React.FC<StandingsPageComponentProps> = ({
       case 'running':
         return '3分毎に自動更新';
       case 'after':
-        return 'コンテスト終了後のため、自動更新は停止されています';
+        return 'コンテスト終了 - 手動更新のみ可能';
       default:
         return null;
     }
   };
 
+  const formatLastUpdated = () => {
+    if (!contest?.updatedAt) return null;
+    
+    const updatedDate = new Date(contest.updatedAt);
+    return updatedDate.toLocaleString('ja-JP', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
+    });
+  };
+
   const [remainTime, setRemainTime] = useState<string | undefined>(undefined);
   const [timeLabel, setTimeLabel] = useState<string>('残り時間');
+  
+  // Auto-update standings when 3 minutes have passed since last update
+  useEffect(() => {
+    if (!contest || contest.status !== 'running' || !contest.updatedAt) return;
+
+    const checkAndUpdate = () => {
+      const now = new Date();
+      const lastUpdated = new Date(contest.updatedAt);
+      const timeSinceLastUpdate = now.getTime() - lastUpdated.getTime();
+      
+      // Update if 3 minutes (180000ms) have passed since last update
+      if (timeSinceLastUpdate >= 3 * 60 * 1000) {
+        updateStandings();
+      }
+    };
+
+    // Check immediately
+    checkAndUpdate();
+
+    // Check every minute
+    const checkInterval = setInterval(checkAndUpdate, 60 * 1000);
+
+    return () => clearInterval(checkInterval);
+  }, [contest?.status, contest?.updatedAt]); // Only depend on contest status and updatedAt
   
   useEffect(() => {
     if (!contest?.startTime) return;
@@ -172,6 +210,14 @@ export const StandingsPageComponent: React.FC<StandingsPageComponentProps> = ({
                 variant="outlined"
                 color={contest?.status === 'running' ? 'primary' : 'default'}
               />
+              {contest?.updatedAt && (
+                <Chip
+                  label={`最終更新時刻: ${formatLastUpdated()}`}
+                  size="small"
+                  variant="outlined"
+                  color="secondary"
+                />
+              )}
               {updating && (
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                   <CircularProgress size={16} />
